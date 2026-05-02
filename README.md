@@ -4,6 +4,8 @@
 
 # plan.form
 
+**Demo: https://planform.sponde.de/**
+
 A scrollytelling WebGL experience that runs the Wilson-Cowan neural field equations in real time on a GPU — an artistic interpretation of the mathematical transformation DMT may apply to the primary visual cortex, unfolding across six acts driven entirely by scroll position.
 
 > **plan.form** is both a scientific term and a layered acronym.
