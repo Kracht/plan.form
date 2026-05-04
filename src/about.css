@@ -93,6 +93,19 @@ nav {
 }
 .nav-links a:hover { color: var(--accent); }
 
+.lang-switch {
+  font-family: var(--font-mono);
+  font-size: 0.62rem;
+  letter-spacing: 0.18em;
+  color: var(--text-muted);
+  display: inline-flex;
+  gap: 0.45rem;
+  align-items: center;
+}
+.lang-switch a { font-family: var(--font-mono); font-size: 0.62rem; letter-spacing: 0.18em; }
+.lang-switch .lang-active { color: var(--accent); }
+.lang-switch .lang-sep { opacity: 0.4; }
+
 /* ── Hero ─────────────────────────────────────────────────────────────────── */
 .hero {
   min-height: 90vh;

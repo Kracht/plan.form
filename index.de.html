@@ -1,0 +1,645 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>plan.form — über das Projekt</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Space+Grotesk:wght@300;400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" />
+  <link rel="stylesheet" href="./src/about.css" />
+</head>
+<body>
+
+<!-- ── Navigation ────────────────────────────────────────────────────────── -->
+<nav>
+  <a class="nav-brand" href="./experience.html">plan.form</a>
+  <ul class="nav-links">
+    <li><a href="#acts">Akte</a></li>
+    <li><a href="#science">Wissenschaft</a></li>
+    <li><a href="#references">Quellen</a></li>
+    <li><a href="#acknowledgements">Danksagung</a></li>
+    <li><a href="#about">Über</a></li>
+    <li><a href="./experience.html">↗ Starten</a></li>
+    <li class="lang-switch"><a href="./index.html">EN</a><span class="lang-sep">·</span><span class="lang-active">DE</span></li>
+  </ul>
+</nav>
+
+<!-- ── Hero ──────────────────────────────────────────────────────────────── -->
+<header class="hero">
+  <div class="hero-bg" style="background-image:url('./SymmetrieHQ.jpeg')"></div>
+  <div class="hero-content">
+    <p class="hero-label">Neuronale-Feld-Visualisierung · WebGL · 2026</p>
+    <h1>plan.form</h1>
+    <p class="hero-subtitle">
+      Eine Scrollytelling-WebGL-Erfahrung, die die Wilson-Cowan-Gleichungen für
+      neuronale Felder in Echtzeit auf der GPU ausführt — eine künstlerische
+      Interpretation jener mathematischen Transformation, die DMT auf den
+      primären visuellen Kortex anwenden könnte.
+    </p>
+    <a class="btn-launch" href="./experience.html">Erfahrung starten →</a>
+  </div>
+</header>
+
+<!-- ── Prämisse ──────────────────────────────────────────────────────────── -->
+<section id="premise">
+  <div class="section-inner">
+    <span class="section-label">Die Prämisse</span>
+    <h2>DMT halluziniert nicht — sondern enthüllt?</h2>
+    <p>
+      Viele bestehende DMT-Visualisierungen machen denselben Fehler: Sie fügen
+      einer leeren Leinwand exotische Inhalte hinzu. Fraktale Renderings,
+      VJ-Loops, KI-generierte Bilder — alle versuchen, die Erfahrung über
+      Neuheit darzustellen. Dieses Projekt geht den umgekehrten Weg.
+    </p>
+    <p>
+      plan.form nimmt ein unscheinbares Foto und fragt: Was, wenn das Muster
+      bereits da war, implizit in der räumlichen Statistik des Bildes?
+      Während ein einzelner Parameter von 0 auf 1 steigt, verstärkt sich die
+      laterale Konnektivität des visuellen Kortex, bis sie das externe Signal
+      überwindet und beginnt, spontan Strukturen zu erzeugen.
+    </p>
+    <p>
+      Die entstehende Geometrie ist nicht entworfen. Sie ist die stabile
+      Lösung einer Differentialgleichung — derselben Gleichung, die die
+      laterale Konnektivität von V1 in jedem menschlichen Gehirn beschreibt.
+      Die Mathematik erzeugt die Ästhetik, nicht umgekehrt.
+    </p>
+    <p>
+      Dies ist eine künstlerische Interpretation auf Grundlage wissenschaftlicher
+      Modelle, keine wissenschaftliche Demonstration. Die neurowissenschaftliche
+      Grundlage der Simulation ist gut etabliert; die Behauptung, dass dies
+      die DMT-Erfahrung tatsächlich <em>ist</em>, ist es nicht. Diese Lücke
+      ist beabsichtigt — und sollte im Hinterkopf behalten werden.
+    </p>
+  </div>
+</section>
+
+<!-- ── Die sechs Akte ────────────────────────────────────────────────────── -->
+<section id="acts">
+  <div class="section-inner wide">
+    <span class="section-label">Die Erfahrung</span>
+    <h2>Sechs Akte, eine kontinuierliche Transformation</h2>
+    <p style="margin-bottom:3rem;">
+      Die Scroll-Position bildet direkt die Shader-Uniforms ab. Es gibt keine
+      Timeline, keine Animationsschleife, die das Narrativ antreibt — nur das
+      Tempo der lesenden Person durch die Mathematik.
+    </p>
+
+    <div class="acts-grid">
+      <div class="act">
+        <span class="act-scroll">0 – 16 %</span>
+        <h3>I · Primärer visueller Kortex</h3>
+        <p>
+          Das Foto wird als luminanzverschobene 3D-Oberfläche dargestellt.
+          Jeder der 197.000 Vertices wird proportional zur lokalen Helligkeit
+          nach außen verschoben — hellere Bereiche treten hervor, dunklere
+          ziehen sich zurück. Mausbewegung steuert die Kamera-Parallaxe.
+          V1 empfängt dieses Signal. Seine laterale Konnektivität ist aktiv,
+          aber stabil; Muster werden durch die Dominanz des externen Inputs
+          unterdrückt.
+        </p>
+      </div>
+
+      <div class="act">
+        <span class="act-scroll">20 – 36 %</span>
+        <h3>II · Wilson–Cowan-Feld</h3>
+        <p>
+          Eine 512²-GPU-Simulation zweier gekoppelter neuronaler Populationen
+          — exzitatorisch (E) und inhibitorisch (I) — wird parallel zum Bild
+          aktiviert. Die Feldgleichung läuft mit 8 Integrationsschritten pro
+          gerendertem Frame. In dieser Phase dominiert das externe Bild.
+          Das System ist stabil. Vorerst.
+        </p>
+      </div>
+
+      <div class="act">
+        <span class="act-scroll">37 – 52 %</span>
+        <h3>III · Bifurkation  α ≈ 0,42</h3>
+        <p>
+          Die laterale exzitatorische Kopplung w<sub>EE</sub> überschreitet
+          eine kritische Schwelle. Der homogene Gleichgewichtszustand verliert
+          seine Stabilität durch eine Turing-Instabilität. Räumliche Muster
+          entstehen spontan — nicht aus Rauschen, sondern aus der Feinstruktur
+          des Bildes selbst, die die Planform-Knoten an Texturgrenzen
+          verankert.
+        </p>
+      </div>
+
+      <div class="act">
+        <span class="act-scroll">53 – 65 %</span>
+        <h3>IV · Hexagonale Planform</h3>
+        <p>
+          Das Feld organisiert sich selbst zu jener Planform, die Bressloff
+          et al. (2001) für V1 unter erhöhter kortikaler Erregbarkeit
+          vorhersagen — der Gain-Anstieg, den Halluzinogene über eine
+          5HT<sub>2A</sub>-vermittelte Wirkung auf V1 induzieren sollen.
+          Die Geometrie ist dem kortikalen Konnektivitätskern inhärent —
+          unabhängig vom darunterliegenden Bild. Es ist dieselbe Musterklasse,
+          die Klüver (1928) fast ein Jahrhundert zuvor aus Meskalin-Berichten
+          katalogisierte.
+        </p>
+      </div>
+
+      <div class="act">
+        <span class="act-scroll">67 – 81 %</span>
+        <h3>V · Hyperbolischer Raum</h3>
+        <p>
+          Die Poincaré-Scheiben-Transformation setzt ein. Das Sichtfeld faltet
+          sich zu einem scheibenförmigen Mandala mit exponentieller
+          Zentrumsausdehnung, das die Informationsdichte verstärkter lateraler
+          Konnektivität aufnehmen kann. Das gesamte Sichtfeld zieht sich
+          endlos in Richtung der Scheibengrenze zurück.
+        </p>
+      </div>
+
+      <div class="act">
+        <span class="act-scroll">78 – 100 %</span>
+        <h3>VI · Erscheinen der Entitäten</h3>
+        <p>
+          z → log(z). Der komplexe Logarithmus bildet das Sichtfeld auf
+          kortikale Koordinaten ab. Die bilaterale Symmetrie rastet ein.
+          Die Knotenstruktur der Planform — bilateralsymmetrisch, hexagonal
+          angeordnet, radial organisiert — wird strukturell nicht mehr von
+          einem Gesicht zu unterscheiden. Höhere kortikale Areale
+          vervollständigen das Muster. Objekte erlangen Handlungsfähigkeit.
+          Entitäten erscheinen.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── Die Wissenschaft ──────────────────────────────────────────────────── -->
+<section id="science">
+  <div class="section-inner">
+    <span class="section-label">Die Wissenschaft</span>
+    <h2>Drei Schichten der Mathematik</h2>
+
+    <!-- 1. Wilson-Cowan -->
+    <div class="science-block">
+      <h3>1 · Das neuronale Feld — Wilson-Cowan und Bifurkation</h3>
+      <p>
+        Die Simulation berechnet pro Raumpunkt zwei gekoppelte gewöhnliche
+        Differentialgleichungen auf einem 512 × 512-Gitter, achtmal pro
+        gerendertem Frame aktualisiert über WebGL2-Ping-Pong-Rendertargets:
+      </p>
+      <pre class="eq">τ_E · ∂E/∂t = −E + σ( w_EE · K_exc⊛E  −  w_EI · I  +  I_ext · (1−α) )
+τ_I · ∂I/∂t = −I + σ( w_IE · E  −  w_II · I )
+
+σ(x) = 1 / (1 + exp(−5 · (x − 0,28)))   [Sigmoid-Aktivierung]
+⊛ = räumliche Faltung mit dem lateralen Konnektivitätskern</pre>
+      <p>
+        Die räumliche Faltung verwendet zwei Ring-Sampler in GLSL: einen
+        <strong>12-Punkt-Ring</strong> (30°-Abstand, 6-fache Symmetrie) bei
+        Radius 6 px für die kurzreichweitige Erregung und einen 16-Punkt-Ring
+        bei Radius 20 px für die langreichweitige Hemmung. Ihre Differenz
+        approximiert den
+        <strong>Mexican-Hat-Kern lateraler Konnektivität</strong> — die
+        anatomische Tatsache, dass exzitatorische Neuronen lokale Cluster
+        bilden, während inhibitorische Interneuronen weiter projizieren.
+        Die 6-fache Symmetrie des 12-Punkt-Rings ist bewusst gewählt: Ein
+        8-Punkt-Ring würde eine 4-fache Verzerrung einführen und Planformen
+        mit Quadratgitter zulasten der hexagonalen Klasse, die V1 bevorzugt,
+        fälschlich begünstigen.
+      </p>
+      <p>
+        Streng genommen handelt es sich um eine reduzierte Formulierung: Die
+        inhibitorische Gleichung nutzt nur lokales E (kein räumlicher Kern auf
+        der E → I-Kopplung) und stellt das System zwischen das vollständige
+        Wilson-Cowan-Modell und das Einzelpopulations-Neuronalfeld nach Amari
+        (1977). Die Vereinfachung ist Standard, erhält das Verhalten der
+        Turing-Instabilität und hält die GPU-Last niedrig genug für eine
+        Echtzeitintegration bei 60 fps.
+      </p>
+      <p>
+        Der Parameter <strong>α</strong> repräsentiert den DMT-Effekt. Steigt
+        α von 0 auf 1, geschehen zwei Dinge gleichzeitig: Der externe Input
+        wird um den Faktor (1−α) unterdrückt, und die laterale exzitatorische
+        Kopplung w<sub>EE</sub> steigt von 0,45 auf 1,75. Unterhalb von
+        α ≈ 0,42 konvergiert jeder Raumpunkt auf dieselbe Ruheaktivität
+        (E* ≈ 0,35). Oberhalb dieser Schwelle verliert der homogene Zustand
+        seine Stabilität.
+      </p>
+      <p>
+        Dies ist eine <strong>Turing-Instabilität</strong> (Turing, 1952).
+        Der kritische Wellenvektor k* — die räumliche Frequenz, die zuerst
+        instabil wird — ergibt sich aus dem Verhältnis von exzitatorischem
+        zu inhibitorischem Kernradius. Für r<sub>exc</sub> = 6 px und
+        r<sub>inh</sub> = 20 px ergibt sich eine charakteristische Wellenlänge
+        von etwa 52 px, die die hexagonale Planform erzeugt. Dieselbe
+        Mathematik, die die Flecken im Leopardenfell verteilt, verteilt auch
+        die Knoten des DMT-Musters.
+      </p>
+      <p>
+        Der externe Input I<sub>ext</sub> enthält ein persistentes
+        Hochfrequenz-Kantensignal, abgeleitet aus der Bildtextur. Es
+        verankert die Planform-Knoten an den Texturgrenzen des Bildes — und
+        stellt sicher, dass das entstehende Muster topographisch im Input
+        verankert ist und nicht willkürlich entsteht.
+      </p>
+    </div>
+
+    <!-- 2. Form Constants -->
+    <div class="science-block">
+      <h3>2 · Formkonstanten — von Klüver zu Bressloff</h3>
+      <p>
+        1928 dokumentierte der Psychologe Heinrich Klüver systematisch jene
+        geometrischen Muster, die universell in Meskalin-Erfahrungen,
+        sensorischer Deprivation, Hypnagogie und der Migräneaura auftreten.
+        Er identifizierte vier Grundklassen: <strong>Gitter und Maschen</strong>,
+        <strong>Spinnweben</strong>, <strong>Tunnel und Trichter</strong>
+        sowie <strong>Spiralen</strong>. Er nannte sie
+        <em>Formkonstanten</em> und schlug vor, dass sie die intrinsische
+        Organisation des visuellen Systems widerspiegeln.
+      </p>
+      <p>
+        Fünfzig Jahre später lieferten Ermentrout und Cowan (1979) die
+        mathematische Erklärung. Sie zeigten, dass der visuelle Kortex,
+        modelliert als neuronales Feld mit lateraler Konnektivität,
+        symmetriebrechenden Instabilitäten unterliegt, die genau diese vier
+        Musterklassen erzeugen. Die Muster sind kein Inhalt, der dem Kortex
+        auferlegt wird — sie sind die strukturellen Resonanzen des Kortex
+        selbst, sichtbar gemacht, sobald die externe Unterdrückung wegfällt.
+      </p>
+      <p>
+        Bressloff et al. (2001) erweiterten diese Analyse unter voller
+        Berücksichtigung der funktionellen Architektur von V1 —
+        Orientierungspräferenzsäulen, okuläre Dominanz, die Anisotropie der
+        langreichweitigen horizontalen Verbindungen — und zeigten, dass die
+        Symmetriegruppe der V1-Konnektivität die entstehenden Planformen auf
+        einen kleinen Satz geometrischer Formen einschränkt. Diese entsprechen
+        genau den Formkonstanten Klüvers. Die <strong>hexagonale Planform</strong>,
+        die diese Simulation erzeugt, wird für gleichförmige, isotrope Eingaben
+        unter erhöhter kortikaler Erregbarkeit vorhergesagt — der Gain-Anstieg,
+        den klassische Halluzinogene über eine 5HT<sub>2A</sub>-vermittelte
+        Wirkung auf V1 induzieren sollen.
+      </p>
+    </div>
+
+    <!-- 3. Geometry -->
+    <div class="science-block">
+      <h3>3 · Kortikale Geometrie — Retino-kortikale Abbildung und hyperbolischer Raum</h3>
+      <p>
+        Das Sichtfeld bildet sich nicht linear auf die V1-Oberfläche ab. Die
+        zentralen 10° des Sehens nehmen rund die Hälfte der V1-Oberfläche
+        ein, obwohl sie nur einen kleinen Bruchteil des gesamten Sichtfelds
+        abdecken (Horton &amp; Hoyt, 1991). Diese Vergrößerung folgt einer
+        logarithmischen Beziehung — der <strong>retino-kortikalen Transformation</strong> —
+        die präzise durch den komplexen Logarithmus beschrieben wird:
+      </p>
+      <pre class="eq">w = log(z)    wobei z = x + iy die Position im Sichtfeld ist
+
+In Polarkoordinaten (r, θ):
+  kortikales x = log(r)
+  kortikales y = θ
+
+Implementiert in GLSL:
+  cx = (log(r) + 3,22) / 3,57
+  cy = atan(y, x) / (2π) + 0,5</pre>
+      <p>
+        Radiale Muster im Sichtraum werden zu vertikalen Streifen in
+        kortikalen Koordinaten. Konzentrische Ringe werden zu horizontalen
+        Streifen. Die Planform — die in kortikalen Koordinaten lebt —
+        erscheint nach Rückabbildung durch die inverse Transformation als
+        radial symmetrisches Mandala. Die bilaterale Spiegelung vor der
+        Log-Polar-Transformation spiegelt die biologische Symmetrie von V1
+        wider: Jede Hemisphäre verarbeitet das kontralaterale Sichtfeld,
+        sodass jedes kortikale Muster ein symmetrisches Gegenstück besitzt.
+        Aus dieser Symmetrieoperation entstehen die Formen der „Doppel-Kreaturen".
+      </p>
+      <p>
+        Andres Gomez-Emilsson (2016) vom Qualia Research Institute schlug
+        vor, dass DMT die zugrundeliegende Geometrie des phänomenalen Raums
+        vom Euklidischen ins <strong>Hyperbolische</strong> überführt. Im
+        hyperbolischen Raum wächst der Umfang eines Kreises exponentiell
+        mit dem Radius statt linear — und stellt damit exponentiell mehr
+        „Raum" pro Radiusspanne bereit. Das fängt die Informationsflut der
+        DMT-verstärkten lateralen Konnektivität auf und könnte die berichtete
+        Qualität von „realer als real" erklären — pro wahrgenommener
+        Raumeinheit lässt sich mehr Information kodieren, als in der
+        euklidischen Geometrie möglich wäre. <em>Hinweis: Der QRI-Essay ist
+        ein spekulativer philosophischer Vorschlag, keine peer-reviewte
+        Veröffentlichung. Er dient hier als konzeptionelle Inspiration für
+        die Poincaré-Scheiben-Transformation, nicht als empirischer Beleg.</em>
+      </p>
+      <p>
+        Das Poincaré-Scheibenmodell bildet die gesamte unendliche
+        hyperbolische Ebene in eine Einheitsscheibe ab. Hier implementiert
+        über:
+      </p>
+      <pre class="eq">r_textur = tanh( atanh(r) / (1 + t · 1,2) )
+
+wobei r = normalisierter Bildschirmradius, t = Krümmungsparameter [0,1]</pre>
+      <p>
+        Kombiniert mit einer vierfachen Farbmittelung (Abtastung aller vier
+        Spiegelpositionen und Mittelung) erzeugt dies das scheibenförmige
+        Mandala, das für die visuelle Geometrie psychedelischer Peaks
+        charakteristisch ist. Das Zentrum dehnt sich ohne erkennbare Grenze
+        aus; der Rand zieht sich endlos zurück.
+      </p>
+      <p>
+        Während der letzten Transition wird die Vertex-Verschiebung um den
+        mittleren Luminanzpunkt des Bildes herum zentriert, sodass dunkle
+        Bereiche (der „Boden" zwischen den Kreaturformen) zurücktreten und
+        helle Bereiche (die Oberflächen der Kreaturen) weiter hervortreten.
+        Die bilaterale Symmetrie der Planform aktiviert das
+        <strong>fusiforme Gesichtsareal</strong> (Kanwisher et al., 1997) —
+        das auf die strukturellen Merkmale eines Gesichts (bilaterale
+        Symmetrie, knotenartige Augenpositionen, axiale Anordnung) reagiert,
+        unabhängig davon, ob der Input tatsächlich ein Gesicht ist. Höhere
+        kortikale Areale vervollständigen das Muster. Dies könnte ein
+        neuronales Korrelat dessen sein, was Terence McKenna als
+        „machine elves" beschrieb: deterministische Mustervervollständigung
+        auf einem überkritischen neuronalen Feld. Ob dies die volle
+        Phänomenologie erklärt — die Handlungsfähigkeit, die Erzählung,
+        das emotionale Gewicht von Entitätenbegegnungen — bleibt eine offene
+        Frage, die das Modell nicht beantwortet.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- ── Quellen ───────────────────────────────────────────────────────────── -->
+<section id="references">
+  <div class="section-inner">
+    <span class="section-label">Quellen</span>
+    <h2>Peer-reviewte Literatur</h2>
+    <ol class="ref-list">
+      <li>
+        Amari, S. (1977). Dynamics of pattern formation in lateral-inhibition
+        type neural fields. <em>Biological Cybernetics, 27</em>(2), 77–87.
+        <a href="https://doi.org/10.1007/BF00337259" target="_blank">
+          https://doi.org/10.1007/BF00337259</a>
+      </li>
+      <li>
+        Bressloff, P. C., Cowan, J. D., Golubitsky, M., Thomas, P. J., &amp;
+        Wiener, M. C. (2001). Geometric visual hallucinations, Euclidean symmetry
+        and the functional architecture of striate cortex.
+        <em>Philosophical Transactions of the Royal Society B: Biological
+        Sciences, 356</em>(1407), 299–330.
+        <a href="https://doi.org/10.1098/rstb.2000.0769" target="_blank">
+          https://doi.org/10.1098/rstb.2000.0769</a>
+      </li>
+      <li>
+        Ermentrout, G. B., &amp; Cowan, J. D. (1979). A mathematical theory of
+        visual hallucination patterns.
+        <em>Biological Cybernetics, 34</em>(3), 137–150.
+        <a href="https://doi.org/10.1007/BF00336965" target="_blank">
+          https://doi.org/10.1007/BF00336965</a>
+      </li>
+      <li>
+        Horton, J. C., &amp; Hoyt, W. F. (1991). The representation of the visual
+        field in human striate cortex: a revision of the classic Holmes map.
+        <em>Archives of Ophthalmology, 109</em>(6), 816–824.
+        <a href="https://doi.org/10.1001/archopht.1991.01080060080030" target="_blank">
+          https://doi.org/10.1001/archopht.1991.01080060080030</a>
+      </li>
+      <li>
+        Kanwisher, N., McDermott, J., &amp; Chun, M. M. (1997). The fusiform face
+        area: a module in human extrastriate cortex specialized for face
+        perception. <em>Journal of Neuroscience, 17</em>(11), 4302–4311.
+        <a href="https://doi.org/10.1523/JNEUROSCI.17-11-04302.1997" target="_blank">
+          https://doi.org/10.1523/JNEUROSCI.17-11-04302.1997</a>
+      </li>
+      <li>
+        Klüver, H. (1966). <em>Mescal and mechanisms of hallucinations.</em>
+        University of Chicago Press. (Originalveröffentlichung 1928)
+      </li>
+      <li>
+        Timmermann, C., Roseman, L., Schartner, M., Milliere, R., Williams,
+        L. T., Erritzoe, D., Muthukumaraswamy, S., Ashton, M., Bendrioua, A.,
+        Kaur, O., Turton, S., Nour, M. M., Day, C. M., Nutt, D.,
+        Carhart-Harris, R. L., &amp; Friston, K. J. (2019). Neural correlates
+        of the DMT experience assessed with multivariate EEG.
+        <em>Scientific Reports, 9</em>(1), Article 16324.
+        <a href="https://doi.org/10.1038/s41598-019-51974-4" target="_blank">
+          https://doi.org/10.1038/s41598-019-51974-4</a>
+      </li>
+      <li>
+        Turing, A. M. (1952). The chemical basis of morphogenesis.
+        <em>Philosophical Transactions of the Royal Society B: Biological
+        Sciences, 237</em>(641), 37–72.
+        <a href="https://doi.org/10.1098/rstb.1952.0012" target="_blank">
+          https://doi.org/10.1098/rstb.1952.0012</a>
+      </li>
+      <li>
+        Wilson, H. R., &amp; Cowan, J. D. (1972). Excitatory and inhibitory
+        interactions in localized populations of model neurons.
+        <em>Biophysical Journal, 12</em>(1), 1–24.
+        <a href="https://doi.org/10.1016/S0006-3495(72)86068-5" target="_blank">
+          https://doi.org/10.1016/S0006-3495(72)86068-5</a>
+      </li>
+      <li>
+        Wilson, H. R., &amp; Cowan, J. D. (1973). A mathematical theory of the
+        functional dynamics of cortical and thalamic nervous tissue.
+        <em>Kybernetik, 13</em>(2), 55–80.
+        <a href="https://doi.org/10.1007/BF00288786" target="_blank">
+          https://doi.org/10.1007/BF00288786</a>
+      </li>
+    </ol>
+
+    <h2 style="margin-top:3rem;">Spekulative und kulturelle Quellen</h2>
+    <p style="margin-bottom:1.5rem;font-size:0.88rem;opacity:0.6;">
+      Diese Quellen prägten die konzeptionelle Rahmung und das visuelle
+      Narrativ des Projekts. Keine wurde peer-reviewt, und keine stellt
+      einen wissenschaftlichen Beleg für die jeweiligen Aussagen dar. Sie
+      stehen hier separat, um ihren epistemischen Status nicht mit der oben
+      genannten Literatur zu vermischen.
+    </p>
+    <ol class="ref-list">
+      <li>
+        Gomez-Emilsson, A. (2016). <em>The hyperbolic geometry of DMT
+        experiences.</em> Qualia Research Institute (nicht peer-reviewter Essay).
+        <a href="https://qualiaresearchinstitute.org/hyperbolic" target="_blank">
+          https://qualiaresearchinstitute.org/hyperbolic</a>
+      </li>
+      <li>
+        McKenna, T. (1993). <em>Food of the gods: The search for the original
+        tree of knowledge.</em> Bantam Books.
+      </li>
+    </ol>
+  </div>
+</section>
+
+<!-- ── Danksagung ────────────────────────────────────────────────────────── -->
+<section id="acknowledgements">
+  <div class="section-inner wide">
+    <span class="section-label">Danksagung</span>
+    <h2>Künstlerische Einflüsse</h2>
+    <p style="margin-bottom:2.5rem;">
+      Vier Arbeiten haben die Bildsprache und den technischen Ansatz dieses
+      Projekts geprägt. Jede steuerte etwas bei, das sich nicht allein aus
+      der wissenschaftlichen Literatur ableiten ließ.
+    </p>
+
+    <table class="ack-table">
+      <thead>
+        <tr>
+          <th>Werk</th>
+          <th>Urheber</th>
+          <th>Beitrag</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>
+            <a href="https://danslesnuages.xyz/field-transformations" target="_blank"><em>field-transformations</em></a>
+          </td>
+          <td>
+            <strong>HAL09999</strong><br>
+            <a href="https://danslesnuages.xyz/" target="_blank">danslesnuages.xyz</a><br>
+            <a href="https://www.fxhash.xyz/u/HAL09999" target="_blank">fxhash-Profil</a>
+          </td>
+          <td>
+            Fragment-Shader-Architektur für Wellenüberlagerung. Binaurales
+            Audio synchron zur Feldfrequenz. Kontemplatives Tempo — ein
+            Klick als Ritual, nicht als Steuerung. Die Zurückhaltung, die
+            wissenschaftliche Visualisierung von generativem Spektakel
+            trennt.
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <a href="https://jshrake.github.io/j2rgb/pressure-radial-flow/" target="_blank"><em>Pressure Radial Flow</em></a>
+          </td>
+          <td>
+            <strong>Justin Shrake</strong> (j2rgb)<br>
+            <a href="https://j2rgb.com/" target="_blank">j2rgb.com</a><br>
+            <a href="https://jshrake.com/" target="_blank">jshrake.com</a><br>
+            <a href="https://github.com/jshrake" target="_blank">github.com/jshrake</a>
+          </td>
+          <td>
+            Post-Processing-Architektur: Bloom → radiale chromatische
+            Aberration → ACES-Filmic-Tonemapping. Ping-Pong-MRT-Statustextur-
+            Struktur für E/I-Felder. Der Plasma-Volumen-Pass (Screen-Space-
+            Gauß-Blur der Sim-Textur, tiefenmaskiert auf dunkle Szenenbereiche)
+            erweitert diese Pipeline um ein biolumineszentes Innenleuchten.
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <a href="https://github.com/taylorallenux/study-particle-landscape" target="_blank"><em>study-particle-landscape</em></a><br>
+            <span style="opacity:0.55;font-size:0.85em;">MIT-lizenziert</span>
+          </td>
+          <td>
+            <strong>Taylor</strong> (taylorallenux)<br>
+            <a href="https://github.com/taylorallenux" target="_blank">github.com/taylorallenux</a>
+          </td>
+          <td>
+            Neuronales Feld als Heightmap zur Vertex-Verschiebung.
+            Wandernde Aktivierungswelle als Enthüllungsmechanismus.
+            Höhenbasierte Färbung mit Interpolation in Schwellenzonen.
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <a href="https://itd286904.github.io/math/jellyfish.html" target="_blank"><em>jellyfish.html</em></a>
+          </td>
+          <td>
+            Ursprüngliches Konzept: <strong>yuruyurau</strong><br>
+            <a href="https://x.com/yuruyurau" target="_blank">x.com/yuruyurau</a><br>
+            PWA-Umsetzung: itd286904
+          </td>
+          <td>
+            Lobe-Anzahl als Parameter zur Auswahl des Planform-Modus
+            (n-fache Rotationssymmetrie). Verschachtelte Sinus-Verzerrung
+            als nichtlineare Aktivierungsfunktion. Fastperiodisches
+            Zeitverhalten, das verhindert, dass sich das Muster jemals
+            exakt wiederholt.
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <p style="margin-top:1.5rem;font-size:0.82rem;opacity:0.55;">
+      Alle vier Arbeiten werden als Einflüsse auf Bildsprache und
+      technischen Ansatz genannt, nicht als direkte Code-Übernahmen.
+      <em>study-particle-landscape</em> steht unter der MIT-Lizenz; die
+      übrigen drei tragen keine explizite Lizenz für ihren Quellcode und
+      werden hier im Rahmen einer Fair-Use-Zuschreibung für künstlerische
+      Einflüsse aufgeführt.
+    </p>
+
+    <h2>Open Source</h2>
+    <table class="ack-table">
+      <thead>
+        <tr>
+          <th>Projekt</th>
+          <th>Funktion</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>
+            <a href="https://threejs.org" target="_blank">Three.js</a>
+          </td>
+          <td>
+            3D-Rendering, WebGL2-Abstraktion, GPUComputationRenderer-Ping-Pong
+            für die neuronale Feldsimulation.
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <a href="https://greensock.com/gsap/" target="_blank">GSAP / ScrollTrigger</a>
+          </td>
+          <td>
+            Scroll-gesteuerte Uniform-Animation. ScrollTrigger bildet den
+            Scroll-Fortschritt des Dokuments ohne JS-Overhead pro Frame auf
+            Shader-Parameter ab.
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <a href="https://vitejs.dev" target="_blank">Vite</a>
+          </td>
+          <td>
+            Build-Werkzeuge. Rohes GLSL wird per <code>?raw</code>-Suffix
+            als String importiert. Konfigurationsfreie statische Ausgabe,
+            deploybar auf jedem Server.
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- ── Über ──────────────────────────────────────────────────────────────── -->
+<section id="about">
+  <div class="section-inner">
+    <span class="section-label">Über</span>
+    <h2>Kracht</h2>
+    <div class="about-block">
+      <div>
+        <p>
+arbeitet als Systems Engineer bei einem Managed-Service-Provider in Mainz, wo der größte Teil seiner Arbeitszeit in Linux-Infrastruktur, Docker-Container und jene Integrationsarbeit fließt, die Unternehmen am Laufen hält, ohne selbst Aufmerksamkeit zu beanspruchen. Den Rest verbringt er mit Lesen — Hofstadter über seltsame Schleifen, Jaynes über die Ursprünge des Bewusstseins, Tegmark über die mathematische Struktur der physikalischen Realität — eine Art von Anhäufung, die sich langsam aufbaut und gelegentlich unerwartete Ergebnisse hervorbringt.
+        </p>
+        <p>
+Dieses Projekt ist eines davon. Es begann mit einer eng gefassten Frage: Warum kehren geometrische Sehkonstanten über verschiedene veränderte Bewusstseinszustände hinweg so präzise wieder, und warum versäumen es bestehende Visualisierungen durchgängig, der Präzision gerecht zu werden, die die zugrundeliegende Mathematik tatsächlich anbietet? Die Umsetzung — eine im Browser laufende, scrollgesteuerte Wilson-Cowan-Simulation auf der GPU — brauchte erheblich mehr GLSL als ursprünglich angemessen schien. Die mathematischen Grundlagen sind zumindest gut etabliert. Was sie vollständig erklären, ist es nicht.</p>
+      </div>
+      <div>
+        <h3>Kontakt</h3>
+        <p>
+          <a href="mailto:pk@sponde.de" style="color:inherit;">pk@sponde.de</a><br>
+          <a href="https://github.com/Kracht" target="_blank" style="color:inherit;">github.com/Kracht</a>
+        </p>
+        <h3>Quellcode</h3>
+        <p>
+          Der vollständige Quellcode dieses Projekts ist auf GitHub unter der
+          MIT-Lizenz verfügbar.<br>
+          <a href="https://github.com/Kracht/plan.form" target="_blank"
+             style="color:inherit;">github.com/Kracht/plan.form</a>
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── Footer ─────────────────────────────────────────────────────────────── -->
+<footer>
+  <span>plan.form · 2026</span>
+  <a href="./experience.html">Erfahrung starten →</a>
+</footer>
+
+</body>
+</html>
