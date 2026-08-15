@@ -128,23 +128,48 @@ nav {
   z-index: 0;
 }
 
-/* Seed texture.
+/* Seed texture, two layers.
    feTurbulence with fractalNoise is band-limited noise: no dominant
-   orientation, energy spread across scales. That is exactly the input class
+   orientation, energy spread across scales. That is the input class
    procedural.js seeds the hexagonal planform from, so the hero shows the kind
-   of signal the simulation consumes rather than a decorative image. Desaturated
-   to stay on palette, masked to the centre so the frame edges stay clean.
+   of signal the simulation consumes rather than a decorative image.
+
+   ::before folds that same diffuse noise into the p6m wallpaper group: twelve
+   copies of a 30-degree wedge, six rotations each paired with its mirror. p6m
+   is the symmetry group of the hexagonal planform the field selects and that
+   Bressloff et al. (2001) predict for V1, so the hero carries the symmetry the
+   piece arrives at. The structure stays diffuse; only its symmetry is fixed.
+   The symmetry is imposed here as decoration and nothing in the simulation is
+   claimed from it.
+   ::after adds fine grain on top. Both desaturated, both masked to the centre.
+
+   Knobs: opacity below, and baseFrequency inside the data URI. Lower frequency
+   means larger cells within each wedge.
    Placeholder until a photograph of the author's own is available. */
+.hero-bg::before,
 .hero-bg::after {
   content: "";
   position: absolute;
   inset: 0;
+  pointer-events: none;
+  -webkit-mask-image: radial-gradient(ellipse 92% 80% at 50% 44%, #000 0%, rgba(0,0,0,0.6) 48%, transparent 82%);
+          mask-image: radial-gradient(ellipse 92% 80% at 50% 44%, #000 0%, rgba(0,0,0,0.6) 48%, transparent 82%);
+}
+
+/* p6m rosette */
+.hero-bg::before {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='400' viewBox='-200 -200 400 400'%3E%3Cdefs%3E%3Cfilter id='t' x='-60%25' y='-60%25' width='220%25' height='220%25'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.03' numOctaves='4' seed='3'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3CfeComponentTransfer%3E%3CfeFuncR type='linear' slope='1.8' intercept='-0.4'/%3E%3CfeFuncG type='linear' slope='1.8' intercept='-0.4'/%3E%3CfeFuncB type='linear' slope='1.8' intercept='-0.4'/%3E%3C/feComponentTransfer%3E%3C/filter%3E%3CclipPath id='w'%3E%3Cpolygon points='0,0 300,0 251.6,163.4'/%3E%3C/clipPath%3E%3Cg id='c' clip-path='url(%23w)'%3E%3Crect x='-300' y='-300' width='600' height='600' filter='url(%23t)'/%3E%3C/g%3E%3CradialGradient id='f' cx='50%25' cy='50%25' r='50%25'%3E%3Cstop offset='0%25' stop-color='%23fff' stop-opacity='0'/%3E%3Cstop offset='20%25' stop-color='%23fff' stop-opacity='0.15'/%3E%3Cstop offset='45%25' stop-color='%23fff' stop-opacity='1'/%3E%3Cstop offset='72%25' stop-color='%23fff' stop-opacity='0.55'/%3E%3Cstop offset='100%25' stop-color='%23fff' stop-opacity='0'/%3E%3C/radialGradient%3E%3Cmask id='m'%3E%3Crect x='-200' y='-200' width='400' height='400' fill='url(%23f)'/%3E%3C/mask%3E%3Cfilter id='s' x='-20%25' y='-20%25' width='140%25' height='140%25'%3E%3CfeGaussianBlur stdDeviation='2.5'/%3E%3C/filter%3E%3C/defs%3E%3Cg mask='url(%23m)' filter='url(%23s)'%3E%3Cuse href='%23c' transform='scale(1,1)'/%3E%3Cuse href='%23c' transform='scale(1,-1)'/%3E%3Cuse href='%23c' transform='rotate(60) scale(1,1)'/%3E%3Cuse href='%23c' transform='rotate(60) scale(1,-1)'/%3E%3Cuse href='%23c' transform='rotate(120) scale(1,1)'/%3E%3Cuse href='%23c' transform='rotate(120) scale(1,-1)'/%3E%3Cuse href='%23c' transform='rotate(180) scale(1,1)'/%3E%3Cuse href='%23c' transform='rotate(180) scale(1,-1)'/%3E%3Cuse href='%23c' transform='rotate(240) scale(1,1)'/%3E%3Cuse href='%23c' transform='rotate(240) scale(1,-1)'/%3E%3Cuse href='%23c' transform='rotate(300) scale(1,1)'/%3E%3Cuse href='%23c' transform='rotate(300) scale(1,-1)'/%3E%3C/g%3E%3C/svg%3E");
+  background-size: 150vh 150vh;
+  background-position: center 44%;
+  background-repeat: no-repeat;
+  opacity: 0.30;
+}
+
+/* Fine grain */
+.hero-bg::after {
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n' x='0' y='0' width='100%25' height='100%25'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
   background-size: 280px 280px;
-  opacity: 0.085;
-  -webkit-mask-image: radial-gradient(ellipse 88% 74% at 50% 44%, #000 0%, rgba(0,0,0,0.55) 45%, transparent 80%);
-          mask-image: radial-gradient(ellipse 88% 74% at 50% 44%, #000 0%, rgba(0,0,0,0.55) 45%, transparent 80%);
-  pointer-events: none;
+  opacity: 0.07;
 }
 
 .hero-content {
