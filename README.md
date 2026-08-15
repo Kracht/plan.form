@@ -264,7 +264,11 @@ The neural field is real: two coupled populations, integrated on the GPU, with n
 
 ### Speculative and cultural sources
 
-These sources informed the conceptual framing and visual narrative of the project. Neither has been peer-reviewed and neither constitutes scientific evidence for the claims they make. They are listed separately to avoid conflating their epistemic status with the literature above.
+The following sources shaped the conceptual framing and visual language of this project. They are listed separately not as a dismissal of their intellectual value, but to distinguish their epistemic register from the peer-reviewed literature above.
+
+McKenna's ethnobotanical and cultural work operates in a tradition of experiential inquiry and synthesis that sits outside, but not beneath, academic convention.
+
+Gomez-Emilsson's essay represents serious independent theoretical work in the phenomenology of altered states, produced within the Qualia Research Institute's research programme, and engages directly with mathematical and geometric frameworks.
 
 - **Gomez-Emilsson, A.** (2016). The hyperbolic geometry of DMT experiences. *Qualia Research Institute* (non-peer-reviewed essay). Used here as conceptual inspiration for the Poincaré disk transform, not as empirical evidence.
 - **McKenna, T.** (1993). *Food of the gods: The search for the original tree of knowledge*. Bantam Books. Cited for the cultural framing of the closing panel only; nothing in the model depends on it.
