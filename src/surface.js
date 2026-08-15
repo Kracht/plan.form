@@ -40,6 +40,8 @@ export function createSurface(texture) {
       uTime:              { value: 0.0 },
       uSimTexture:        { value: null },
       uDMT:               { value: 0.0 },
+      uThreshold:         { value: 0.0 },  // act II · level 1, sharpening only
+      uWorldSheet:        { value: 0.0 },  // act V · level 3, field read as depth
       uRetino:            { value: 0.0 },
       uCurvature:         { value: 0.0 },  // vertex + fragment both consume this
       uGrade:             { value: 0.0 },

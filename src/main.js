@@ -55,6 +55,7 @@ let pointCloud = null
 let waveFront  = null
 let dmt        = 0.0
 let retino     = 0.0
+let worldSheet = 0.0
 
 function initScene(texture) {
   surface = createSurface(texture)
@@ -91,13 +92,18 @@ if (GALLERY.length > 0) {
 
 // ─── Scroll narrative ─────────────────────────────────────────────────────────
 
-createScroll(
-  (alpha) => { dmt = alpha },
-  (s)     => { if (surface) surface.material.uniforms.uSurface.value    = s },
-  (r)     => { retino = r; if (surface) surface.material.uniforms.uRetino.value = r },
-  (c)     => { if (surface) surface.material.uniforms.uCurvature.value  = c },
-  (g)     => { if (surface) surface.material.uniforms.uGrade.value      = g }
-)
+createScroll({
+  onDMT:        (a) => { dmt = a },
+  onSurface:    (s) => { if (surface) surface.material.uniforms.uSurface.value   = s },
+  onThreshold:  (t) => { if (surface) surface.material.uniforms.uThreshold.value = t },
+  onWorldSheet: (w) => {
+    worldSheet = w
+    if (surface) surface.material.uniforms.uWorldSheet.value = w
+  },
+  onRetino:     (r) => { retino = r; if (surface) surface.material.uniforms.uRetino.value = r },
+  onCurvature:  (c) => { if (surface) surface.material.uniforms.uCurvature.value = c },
+  onGrade:      (g) => { if (surface) surface.material.uniforms.uGrade.value     = g },
+})
 
 // ─── Parallax ─────────────────────────────────────────────────────────────────
 
@@ -151,11 +157,20 @@ function animate() {
   camera.position.y = camTarget.y
 
   if (surface && gpuSim && postfx) {
-    const activeDMT = (lab && lab.getDMT() !== null) ? lab.getDMT() : dmt
+    const labDMT    = (lab && lab.getDMT() !== null) ? lab.getDMT() : null
+    const activeDMT = labDMT !== null ? labDMT : dmt
     const simTex    = gpuSim.step(activeDMT)
+
+    // The laboratory sits at the top of the scroll, where the world-sheet
+    // parameter is still zero. Derive it from the slider instead, so dialling α
+    // past the bifurcation shows the field as depth and not only as brightness.
+    const activeSheet = labDMT !== null
+      ? Math.max(0, (labDMT - 0.55) / 0.45)
+      : worldSheet
 
     surface.material.uniforms.uTime.value       = elapsed
     surface.material.uniforms.uDMT.value        = activeDMT
+    surface.material.uniforms.uWorldSheet.value = activeSheet
     surface.material.uniforms.uSimTexture.value = simTex
 
     if (waveFront) {
@@ -164,7 +179,12 @@ function animate() {
     }
     const wfRadius  = waveFront ? waveFront.getRadius() : -1.0
     const curvature = surface.material.uniforms.uCurvature.value
-    if (pointCloud) pointCloud.update(simTex, activeDMT, elapsed, curvature, retino, wfRadius)
+    if (pointCloud) {
+      pointCloud.update(
+        simTex, activeDMT, elapsed, curvature, retino, wfRadius, activeSheet,
+        surface.material.uniforms
+      )
+    }
 
     postfx.render(scene, camera, activeDMT, retino, simTex)
   } else {

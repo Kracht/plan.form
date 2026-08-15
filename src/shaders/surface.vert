@@ -3,8 +3,9 @@ uniform sampler2D uSimTexture;
 uniform float     uDisplacementScale;
 uniform float     uSurface;    // 0=flat → 1=full depth (panel 1 reveal)
 uniform float     uDMT;
+uniform float     uWorldSheet; // Act V · level 3: field read as a height map
 uniform float     uRetino;     // 0→1 finale: log-polar blend + imposed displacement
-uniform float     uCurvature;  // Act V: Poincaré disk warp, must match surface.frag + pointcloud.js
+uniform float     uCurvature;  // Act VI: Poincaré disk warp, must match surface.frag + pointcloud.js
 uniform float     uTime;
 uniform float     uTexAspect;    // texture width/height
 uniform float     uScreenAspect; // screen width/height
@@ -36,6 +37,7 @@ vec2 texUV(vec2 uv) {
 varying vec2  vUv;
 varying float vElevation;
 varying float vSimDev;   // deviation from resting state, passed to fragment
+varying float vSheet;    // world-sheet height at this vertex, 0 when act V is off
 
 void main() {
   vUv = uv;
@@ -61,6 +63,41 @@ void main() {
   float breathRate = 0.4   + uSurface * 0.6;
   displaced.z += sin(uTime * breathRate) * breathAmp;
 
+  // ── Act V · level 3, Magic Eye: the world-sheet ───────────────────────────
+  //
+  // The reports describe the third level as the Chrysanthemum becoming the
+  // texture of an autostereogram: top-down modelling reads a depth map out of
+  // the shifting texture, and a surface becomes a volume. Dark recedes, bright
+  // advances, and whatever lifts out of the wall is patterned with the same
+  // texture it lifted out of, because it is made of it.
+  //
+  // So the height map is the field, not the photograph. An earlier version did
+  // this from image luminance in the finale, which produced the same silhouette
+  // for any parameter value and put a photographic decision where a field
+  // reading belongs.
+  //
+  // The split is deliberately asymmetric and has a dead zone:
+  //   dev near rest      → stays at the floor, no displacement
+  //   dev above rest     → nodes advance toward the viewer
+  //   dev below rest     → anti-nodes recede, opening the gap
+  // The dead zone is what turns a modulation into a volume. Without it every
+  // vertex moves and the result reads as a rippled plane, not as forms standing
+  // on a floor.
+  //
+  // What the code does not do is recognise anything. In the source the fold is
+  // driven by recognition: whatever is recognised takes on the excess curvature.
+  // That half happens in the viewer, not here.
+  float sheet = 0.0;
+  if (uWorldSheet > 0.001) {
+    // smoothstep is undefined for edge0 >= edge1, so the downward half negates
+    // its input rather than reversing the edges.
+    float s    = clamp(dev / 0.22, -1.0, 1.0);
+    float up   = smoothstep(0.10, 0.85, s);
+    float down = smoothstep(0.10, 0.70, -s);
+    sheet = (up - down * 0.55) * uDisplacementScale * uWorldSheet * 1.35;
+  }
+  displaced.z += sheet;
+
   // ── Imposed entity ring ───────────────────────────────────────────────────
   // Hand-placed elliptical annulus pushed toward the viewer. Not field-derived,
   // not image-derived. A composition decision, disclosed on the about page.
@@ -72,17 +109,11 @@ void main() {
                * uRetino * 0.20;
   displaced.z += emerge;
 
-  // ── Statue emergence: floor drops, bright forms protrude (finale) ─────────
-  // Recentres luma around 0.38: dark "floor" areas go negative (sink back),
-  // bright creature surfaces go further positive (push toward viewer).
-  // The growing depth gap between floor and statues creates entity emergence.
-  float statueDisp = (luma - 0.38) * uDisplacementScale * uRetino * 1.1;
-  displaced.z += statueDisp;
-
   vElevation = luma;   // blended luma · fragment shading tracks geometry
   vSimDev    = dev;
+  vSheet     = sheet;
 
-  // ── Act V: Poincaré disk · warp x,y to match texture lookup and particles ──
+  // ── Act VI: Poincaré disk · warp x,y to match texture lookup and particles ─
   // The hyperbolic deformation applies to the entire visual field, so the mesh
   // geometry must follow. Without this the texture content and particle positions
   // migrate toward the centre while the bump landscape stays at Euclidean grid

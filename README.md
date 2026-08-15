@@ -2,7 +2,7 @@
 
 **Demo: https://planform.sponde.de/**
 
-A scrollytelling WebGL experience that runs the Wilson-Cowan neural field equations in real time on a GPU. An artistic interpretation of the mathematical transformation DMT may apply to the primary visual cortex, unfolding across six acts driven entirely by scroll position.
+A scrollytelling WebGL experience that runs the Wilson-Cowan neural field equations in real time on a GPU. An artistic interpretation of the mathematical transformation DMT may apply to the primary visual cortex, unfolding across six acts and a descent, driven entirely by scroll position.
 
 > **plan.form** is both a scientific term and a layered acronym.
 > *Planform*, the spatial pattern that self-organises in primary visual cortex at bifurcation, is the central object this project simulates and visualises.
@@ -39,14 +39,23 @@ This is an artistic interpretation built on scientific models, not a scientific 
 
 Scroll position maps directly to shader uniforms. There is no timeline, no animation loop driving the narrative, only the reader's own pace through the mathematics.
 
-| Scroll | Act | What happens |
-|--------|-----|--------------|
-| 0–16% | **I · Primary Visual Cortex** | The photograph is rendered as a luminance-displaced 3D surface. Each of the 197,000 vertices is pushed outward in proportion to local brightness. Mouse movement drives camera parallax. V1 receives this signal; lateral connectivity active but stable, patterns suppressed by the dominance of external input. |
-| 20–36% | **II · Wilson–Cowan Field** | A 512² GPU simulation of two coupled neural populations (excitatory E, inhibitory I) activates alongside the image. The field runs 8 integration steps per rendered frame. The system is stable. The external image dominates. |
-| 37–52% | **III · Bifurcation α ≈ 0.42** | Lateral excitatory coupling w_EE crosses a critical threshold. The homogeneous steady state loses stability through a Turing instability. A travelling wave of activation sweeps centrifugally from the foveal centre outward: the propagation front of lateral excitation. Inside the front, spatial patterns form spontaneously. Outside it, the cortex remains at resting state. |
-| 53–65% | **IV · Hexagonal Planform** | The field self-organises into the planform class Bressloff et al. (2001) predict for V1 under elevated cortical excitability: the gain increase hallucinogens are thought to induce via 5HT₂A-mediated action on V1. The symmetry class and the spacing of the pattern are intrinsic to the cortical connectivity kernel. Where its nodes land is not: the image continues to seed them throughout. |
-| 67–81% | **V · Hyperbolic Space** | The Poincaré disk transform initiates. The visual field folds into a disc-shaped mandala with exponential centre expansion, accommodating the information density of amplified lateral connectivity. The entire visual field recedes forever toward the boundary of the disc. |
-| 78–100% | **VI · Entity Emergence** | z → log(z). The complex logarithm maps the visual field to cortical coordinates. Bilateral, nodal, axially organised structure is what face-selective cortex responds to, which is a claim about the person looking at the screen rather than about the field behind it. The figures here are also pushed into place by hand. See [Honest accounting](#honest-accounting). |
+The act boundaries follow the six-level phenomenology that recurs across the trip report corpus, as collected and ordered by Gomez-Emilsson (2016, non-peer-reviewed): Threshold, Chrysanthemum, Magic Eye, Waiting Room, Breakthrough, Amnesia.
+
+One word has to be kept apart from itself. *Threshold* in those reports is the first level: a shift in ambience and a sharpening of the senses, with no geometry at all. *Threshold crossing* in a neural field means the bifurcation point. They are one level apart, and act III is the second of them.
+
+| Scroll | Act | Level | What happens |
+|--------|-----|-------|--------------|
+| 0–13% | **I · Primary Visual Cortex** | sober | The photograph is rendered as a luminance-displaced 3D surface. Each of the 197,000 vertices is pushed outward in proportion to local brightness. Mouse movement drives camera parallax. V1 receives this signal; lateral connectivity active but stable, patterns suppressed by the dominance of external input. |
+| 14–26% | **II · Threshold** | 1 | The first reported level and the quietest. Colours lift, local contrast sharpens, the scene reads as though an intervening medium had been removed. No geometry, no motion. α is still zero and the field is idle: what happens here is a colour grade and a four-tap local contrast lift applied to the photograph. The act exists because the corpus puts it first. |
+| 26–46% | **III · Bifurcation α ≈ 0.42** | crossing | The Wilson-Cowan field comes up alongside the image: two coupled populations, 8 integration steps per rendered frame on a 512² grid. Lateral excitatory coupling w_EE then crosses its critical value and the homogeneous steady state loses stability through a Turing instability. A travelling wave of activation sweeps centrifugally from the foveal centre outward. Inside the front, spatial patterns form spontaneously. |
+| 47–63% | **IV · Chrysanthemum** | 2 | The field self-organises into the planform class Bressloff et al. (2001) predict for V1 under elevated cortical excitability. Flat, apersonal, no figures yet. The reports describe this level as symmetrifying whatever patterned surface is looked at, which is exactly the split here: the kernel sets the symmetry class and the spacing, the photograph sets where the nodes land. |
+| 62–79% | **V · Magic Eye** | 3 | The texture is read as an autostereogram. Dark recedes, bright advances, and a surface becomes a volume. The height map is the field itself: nodes rise, anti-nodes sink, the mid-range flattens into a floor, and what lifts out of the wall carries the planform's symmetry because it is made of the planform. In the reports the fold comes from recognition, and that half is not in the code. |
+| 78–93% | **VI · Waiting Room** | 4 | The Poincaré disk transform reaches full strength and z → log(z) maps the visual field to cortical coordinates. Bilateral, nodal, axially organised structure is what face-selective cortex responds to, which is a claim about the person looking at the screen rather than about the field behind it. In the reports the entities are a gradient across four levels; this act shows one point on it. |
+| 92–100% | **Coda · Descent** | post-peak | Plasma concentration peaks 2–3 min after injection and effects decay across the following quarter hour (Timmermann et al., 2019); whole-brain models fit the bifurcation parameter as a gamma function, fast rise and slow fall (Piccinini et al., 2025). So α falls, the curvature relaxes, the cortical map unwinds and the photograph comes back. Earlier versions held the parameter at maximum to the end, which matched neither the pharmacokinetics nor the reports. |
+
+### Where this stops, and why
+
+Levels five and six, Breakthrough and Amnesia, are deliberately not attempted, and the reason is structural. The source defines a breakthrough as a *topological* change of the world-sheet: the connectivity of represented space changes, loops open between points that had none. Everything here is a change of curvature applied to a depth-mapped surface, and a depth-mapped surface cannot change its own topology. Amnesia is by definition not representable. The work covers four of six levels and stops there.
 
 ---
 
@@ -59,7 +68,7 @@ src/
 ├── gpuCompute.js        # GPUComputationRenderer ping-pong (512² grid, 8 steps/frame)
 ├── wavefront.js         # Activation front state machine (ring mesh not rendered)
 ├── pointcloud.js        # 256² particle layer tracking the WC E field
-├── procedural.js        # 7 scientifically-motivated procedural input textures
+├── procedural.js        # 8 input textures in two groups: control and resonance
 ├── postfx.js            # Post-processing: chromatic aberration + bloom + plasma volume + ACES
 ├── scroll.js            # GSAP ScrollTrigger → shader uniforms, annotation panels
 ├── lab.js               # Surface Laboratory: texture selector, upload, α slider, planform bias
@@ -142,19 +151,39 @@ Two-pass pipeline rendered to a HDR (HalfFloat) offscreen target:
 
 ### Procedural input textures
 
-Seven textures covering the full space of Ermentrout-Cowan (1979) form constants and Bressloff et al. (2001) planform predictions. All are expressed in cortical (log-polar) coordinates so they seed the correct planform class:
+Eight textures in two groups. The split is not cosmetic: the groups run two different experiments, and only one of them tests the claim this project makes. The laboratory strip is divided and labelled accordingly.
 
-| Texture | Formula | Cortical representation | Expected planform |
-|---------|---------|------------------------|-------------------|
+**control · symmetry-free.** Broadband, isotropic, no privileged orientation and no privileged spatial frequency. There is no symmetry in the input to copy, so any symmetry that appears downstream came from the connectivity kernel. This is what Ermentrout & Cowan (1979) and Bressloff et al. (2001) actually predict: spontaneous pattern formation out of a near-homogeneous state. `pink` is the default when no photograph is present.
+
+| Texture | Construction | Why it qualifies |
+|---------|--------------|------------------|
+| pink | 1/f multi-octave, 12 orientations per octave | Natural-scene spatial statistics; all scales compete, none is imposed |
+| noise | Isotropic band-limited, 24 orientations | Single scale matched to the field's characteristic wavelength, no orientation |
+| raufaser | Tileable value-noise grain plus ~420 chips at uniformly random angles | Aperiodic and isotropic; chip length scaled toward k\* so it carries energy near the field's own wavelength without carrying an orientation |
+
+**resonance · form constants.** These already carry a form constant, and `rings` carries it in cortical coordinates, where it is literally the pattern the kernel is supposed to produce. Handing the field the answer is not a demonstration of emergence and must not be read as one.
+
+What they do test is worth having: whether the field's characteristic wavelength k\* matches the input's spatial frequency. If it matches, the pattern locks and sharpens. If it does not, the field overrides the input and imposes its own spacing. That is wavelength selection, not emergence, and switching between the two groups makes the difference visible.
+
+| Texture | Formula | Cortical representation | Form constant |
+|---------|---------|------------------------|---------------|
+| stripes | Oriented single-scale | 1D dominance | Stripe / wave |
+| grid | sin(kx)·sin(ky) | Two orthogonal | Square lattice |
 | rings | cos(k · log r) | Vertical stripes | Funnel / tunnel |
 | spokes | cos(6θ) | Horizontal stripes | Cobweb / mandala |
 | spiral | cos(6·log r + 3θ) | Diagonal stripes | Logarithmic spiral |
-| pink | 1/f multi-octave | All scales | Multi-planform |
-| noise | Isotropic band-limited | No dominant orientation | Hexagonal mosaic |
-| stripes | Oriented single-scale | 1D dominance | Stripe / wave |
-| grid | sin(kx)·sin(ky) | Two orthogonal | Square lattice |
 
-All textures are generated at 512² (simulation) and 64² (thumbnail) from the same generator function, with mipmaps enabled to reduce aliasing through the log-polar transform.
+**Viewing distance.** A `distance` control regenerates the live texture at 1× or 2× feature density. Nothing moves and no camera changes: stepping back from a wall raises the spatial frequency of what lands on a retina, and that is exactly what the factors do.
+
+Tiling the texture with `RepeatWrapping` would have been the cheaper route and was rejected. It introduces a phase discontinuity at every tile boundary, those seams are straight edges, and edges enter the external drive through the edge-energy term and seed planform nodes. A tiled input prints its own grid into the pattern. It would also impose an exact translational periodicity on textures whose whole purpose is to carry none.
+
+Two steps is the whole useful range, because the second one crosses something. The field's characteristic wavelength is roughly 28 px on the 512² grid. At distance 1 the input's features sit above it and the image decides where the nodes go. At distance 2 they fall to it and past it, the field stops locking to the input and imposes its own spacing, and structures appear that the input never contained: the oriented stripes at distance 2, held past the peak, produce symmetries that distance 1 does not produce at any parameter value. A third step only pushes further into the same regime, where everything below the field's wavelength looks alike to the field.
+
+`raufaser` is rendered at 2× resolution and box-averaged down, because it is the only generator that draws hard edges and so the only one that aliases: a chip below one texel then contributes its true area instead of being rounded up or dropped, and grain finer than a texel loses contrast by exactly the factor the averaging implies. Factors of 3 and 4 are visually indistinguishable from 2 at these distances while costing two and three times as much. The analytic generators are sums of band-limited sinusoids whose shortest wavelength stays well above two texels here, so they get nothing from it and are left at 1×.
+
+The control is inert while a photograph is loaded, since a photograph has no generator to re-run.
+
+All textures are generated at 512² (simulation) and 64² (thumbnail) from the same generator function, with mipmaps enabled to reduce aliasing through the log-polar transform. `raufaser` uses a seeded PRNG rather than `Math.random()` so the thumbnail and the simulation texture show the same wall.
 
 ### Retino-cortical transform
 
@@ -170,7 +199,19 @@ vec2 corticalUV(vec2 uv) {
 
 The log-polar mapping reproduces the logarithmic form of foveal magnification (~50% of V1 surface area devoted to the central ~10° of visual field; Horton & Hoyt 1991) qualitatively. Its constants are chosen for framing, not fitted to the published magnification factor. Radial symmetry that is implicit in the original input becomes explicit in cortical coordinates.
 
-During the final transition, vertex displacement is recentred around the image's mid-luminance point, causing dark areas to recede and bright areas to protrude. That displacement is imposed, not computed: it is applied to the photograph's luminance and is not derived from the field. Separately, the fusiform face area (Kanwisher et al., 1997) responds to the structural features of a face independent of whether the input literally is one. That is a claim about the viewer, not about the simulation.
+In the QRI account the curvature is a *local* quantity driven by attention: it accumulates where measurements have already been made, and only jumps to the whole space when a surface can no longer hold it. Here it is a single global parameter applied to the entire frame at once, centred on the middle of the image and unrelated to where the field is active. The name of the mechanism is borrowed correctly; the operator is not the one described.
+
+The local half of that idea is what act V implements. The field's deviation from rest is read as a height map rather than as a brightness modulation: nodes advance, anti-nodes recede, and the mid-range holds still as a floor, so the plane acquires volume and forms stand out of it. Those forms are patterned with the planform because they are made of it. The height map is field-derived; the single key light and rim term that make it read as relief are not. An earlier version produced this effect from the photograph's own luminance in the final act, which gave the same silhouette at every parameter value.
+
+The fusiform face area (Kanwisher et al., 1997) responds to the structural features of a face independent of whether the input literally is one. That is a claim about the viewer, not about the simulation.
+
+### Model class limit
+
+The field here is a single-population reduction with an isotropic Mexican-hat kernel and no orientation dimension, which places it in the Ermentrout-Cowan class rather than the orientation-tuned one. Bressloff et al. (2001, §3d) are explicit about what that class can and cannot do: *"The absence of orientation representation in the Ermentrout-Cowan model means that a number of the form constants cannot be generated by the model, including lattice tunnels, honeycombs and certain chequer-boards, and cobwebs."*
+
+What this class does generate is contrasting regions of light and dark, which under the inverse retino-cortical map give tunnels, funnels and spirals. Honeycombs and lattices need oriented contours, and oriented contours need a dimension this field does not have. The honeycomb quality on screen, the part that looks most like the reports, comes from the photograph's texture and from the composition.
+
+The same limit shows up as a symmetry count. An isotropic kernel on a doubly periodic lattice supports three lattice types, rhombic, square and hexagonal, which in wallpaper terms is at most p2mm, p4m and p6m. Three of the seventeen plane symmetry groups, where reports of psychedelic visuals claim all seventeen. That gap is a property of the model, not a rendering limitation.
 
 ### Planform bias selector
 
@@ -202,7 +243,7 @@ npm run preview  # preview production build locally
 
 The Surface Laboratory panel appears at the top of the page and fades out as the first annotation panel comes into view (scrolling back restores it).
 
-- **Input textures**: 7 procedural presets (rings, spokes, spiral, pink noise, noise, stripes, grid) plus any images placed in `src/gallery/`
+- **Input textures**: 8 procedural presets in two labelled groups, control (pink, noise, raufaser) and resonance (stripes, grid, rings, spokes, spiral), plus any images placed in `src/gallery/`
 - **Upload**: load any image from disk; a preset tile is created for it
 - **α slider**: manually scrub the DMT parameter from 0 → 1, overriding the scroll-driven value. Useful for exploring the bifurcation threshold with any input
 - **Planform bias**: select n-fold rotational symmetry bias (free / 3 / 4 / 6 / 8) to tip the competition between planform modes
@@ -217,13 +258,12 @@ Changing texture or planform resets the simulation to resting state so the new p
 - [x] Travelling activation front: gates the WC simulation itself, ring no longer rendered
 - [x] Point cloud overlay: Wilson-Cowan E field as 3D heightmap particle layer
 - [x] Post-processing stack: chromatic aberration + bloom + plasma volume + ACES tone mapping
-- [x] Procedural input textures: 7 patterns covering full Ermentrout-Cowan form constant space
+- [x] Procedural input textures: 8 patterns split into a symmetry-free control group and a form-constant resonance group
 - [x] 12-point excitatory ring (6-fold symmetry, prevents square-lattice bias of 8-point ring)
 - [x] Boundary damping (prevents hard rectangular planform-edge artefact)
 - [x] Planform bias selector (3/4/6/8-fold mode)
 - [x] Surface Laboratory: fades as scrollytelling begins
-- [x] Entity emergence: imposed displacement in Act VI, disclosed under Honest accounting
-- [ ] Binaural audio sync: peak spatial frequency of the E field drives a Web Audio binaural beat generator
+- [x] Magic Eye world-sheet: field-derived height map in Act V, replaces the imposed luminance displacement of the old finale
 
 ---
 
@@ -231,19 +271,31 @@ Changing texture or planform resets the simulation to resting state so the new p
 
 The neural field is real: two coupled populations, integrated on the GPU, with no scripted outcome. Everything that follows the field is a design decision. Separating the two matters more than either does alone.
 
-**What the field determines.** The symmetry class and the characteristic wavelength of the planform follow from the connectivity kernel and from nothing else. The bifurcation is a real loss of stability. The activation front is not a visual overlay: it gates the simulation itself, so cortex outside the front stays sub-bifurcation until the front arrives.
+**What the field determines.** The symmetry class and the characteristic wavelength of the planform follow from the connectivity kernel and from nothing else. The bifurcation is a real loss of stability. The activation front is not a visual overlay: it gates the simulation itself, so cortex outside the front stays sub-bifurcation until the front arrives. The shape of the world-sheet in act V as well: the height at every vertex is the local deviation of the excitatory population from its resting state, split asymmetrically so nodes advance and anti-nodes recede.
+
+**What the input determines.** Where the nodes land, and, for one group of inputs, more than that. A persistent high-frequency term derived from the input texture enters the external drive and does not fade as α rises. With a control input that is all it does: the input has no symmetry, so it anchors the pattern topographically while the kernel decides the pattern's class. With a resonance input the picture changes, because the input already carries a form constant and `rings` carries it in the very coordinates the kernel works in. Then the field is not producing a planform, it is being handed one. Both are on the tile strip, labelled, and the difference is the point of having both.
 
 **What the image determines.** Where the nodes land. A persistent high-frequency term derived from the input texture enters the external drive and does not fade as α rises, so the pattern stays topographically anchored to the photograph throughout. The kernel decides what class of pattern forms; the image decides where it forms.
 
 **What is imposed.**
 
-- **Entity geometry.** In the final act, vertex displacement is recentred on the image's mid-luminance so bright forms protrude and dark regions sink. Applied to the photograph, not derived from the field. The resemblance to standing figures is composed, not computed.
+- **The entity ring.** An elliptical annulus in the final act, placed by hand and pushed toward the viewer. Not field-derived, not image-derived, a composition decision and nothing else.
+- **Lighting the world-sheet.** The height map of act V comes from the field, but a height map only reads as volume once it catches light. One fixed key light and a rim term do that. The shape is simulated; the way it is lit is rendering.
+- **The hyperbolic warp.** One global curvature parameter, applied to the whole frame at once and centred on the middle of the image. In the account it is borrowed from, curvature is local and driven by attention. Here it is neither.
+- **The Threshold sharpening.** Act II is a colour grade and a four-tap local contrast lift on the photograph. The field is idle throughout it.
+- **A second model, running as post-effects.** The frame feedback echo and the drifting warp implement the first two of the four operators in Gomez-Emilsson's algorithmic reduction (2016, non-peer-reviewed): control interruption and drifting. Two of those four operators are present as post-effects and none as field mechanisms.
 - **Symmetry bias.** The planform selector injects a low-amplitude angular modulation into the external drive, centred on the frame. Small enough that the field still resolves the competition, but the competition has been tipped, and the centring biases toward a radial composition.
 - **Boundary damping.** Lateral coupling is pulled back toward its sub-threshold value within the outer tenth of the frame. A vignette applied to the dynamics rather than to the picture.
 - **Front timing.** Trigger point, one-second delay and constant speed are set by hand. In a neural field, fronts emerge from the dynamics. Here the front is direction, and the dynamics follow it.
 - **Everything after the render.** Bloom, radial chromatic aberration, the plasma volume, two colour grades, drift, disk mask, edge fades, frame feedback, tone mapping. None of this is in any model. It is photography.
 
 **What the model does not claim.** The face-like forms of the final act are a statement about the viewer, not about the simulation. Whether the same account extends to entity encounters under DMT is an open question this piece raises rather than answers.
+
+It does not claim to produce the pattern class it most resembles: the field belongs to the model class Bressloff et al. show cannot generate honeycombs, lattices or cobwebs, and it spans three of the seventeen plane symmetry groups where the reports claim all seventeen.
+
+It does not claim to cover the experience: four of six reported levels, stopping before Breakthrough and Amnesia.
+
+It does not model recognition. Act V reads the field as depth, but the source attributes the fold to recognition, and nothing in the code recognises anything. That half of the mechanism is supplied by the person watching.
 
 ---
 
@@ -257,6 +309,7 @@ The neural field is real: two coupled populations, integrated on the GPU, with n
 - **Horton, J.C. & Hoyt, W.F.** (1991). The representation of the visual field in human striate cortex: a revision of the classic Holmes map. *Archives of Ophthalmology*, 109(6), 816–824.
 - **Kanwisher, N., McDermott, J. & Chun, M.M.** (1997). The fusiform face area: a module in human extrastriate cortex specialized for face perception. *Journal of Neuroscience*, 17(11), 4302–4311.
 - **Klüver, H.** (1966). *Mescal and mechanisms of hallucinations*. University of Chicago Press. (Original work published 1928)
+- **Piccinini, J.I. et al.** (2025). Transient destabilization of whole brain dynamics induced by N,N-Dimethyltryptamine (DMT). *Communications Biology*, 8, 148.
 - **Timmermann, C. et al.** (2019). Neural correlates of the DMT experience assessed with multivariate EEG. *Scientific Reports*, 9, 16324.
 - **Turing, A.M.** (1952). The chemical basis of morphogenesis. *Phil. Trans. R. Soc. B*, 237, 37–72.
 - **Wilson, H.R. & Cowan, J.D.** (1972). Excitatory and inhibitory interactions in localized populations of model neurons. *Biophysical Journal*, 12(1), 1–24.

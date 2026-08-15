@@ -184,7 +184,14 @@ const POST_FRAG = /* glsl */`
   //
   // Directional frame feedback: the previous frame's post output is sampled with
   // an offset and added back, so prior sensory data bleeds into the current frame.
-  // Purely an image effect. Nothing in any neural model produces it.
+  //
+  // Provenance, stated precisely. This is not derived from the Wilson-Cowan
+  // field and no neural field model produces it. It is a deliberate
+  // implementation of the first of the four operators in Gomez-Emilsson's
+  // algorithmic reduction of psychedelic states (2016, non-peer-reviewed),
+  // which describes control interruption as "a longer half-life for all qualia"
+  // and the buildup of overlapping prior frames. A second model, cited on the
+  // about page, not the one the simulation runs.
   //
   // The displacement of the echo sample is driven by the *difference* between
   // the local x-axis and y-axis luminance gradients.  Where horizontal edges

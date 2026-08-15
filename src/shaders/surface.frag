@@ -1,8 +1,10 @@
 uniform sampler2D uTexture;
 uniform sampler2D uSimTexture;
 uniform float     uDMT;
-uniform float     uRetino;    // Act VI: 0→1 finale
-uniform float     uCurvature; // Act V: 0→1
+uniform float     uThreshold; // Act II · level 1: sharpening, no geometry
+uniform float     uWorldSheet;// Act V · level 3: field read as depth
+uniform float     uRetino;    // Act VI: 0→1 log-polar + entity ring
+uniform float     uCurvature; // Act VI: 0→1
 uniform float     uGrade;     // Colour grade: 0=natural, 1=vibrance+warmth
 uniform float     uTexAspect;    // texture width/height
 uniform float     uScreenAspect; // screen width/height, for circular vignette + UV correction
@@ -31,8 +33,30 @@ vec2 texUV(vec2 uv) {
 varying vec2  vUv;
 varying float vElevation;
 varying float vSimDev;
+varying float vSheet;
 
-// ── Act II: retino-cortical map  z → log(z) ───────────────────────────────────
+// ── Act II · level 1, Threshold ──────────────────────────────────────────────
+// "The air appears to suddenly have been sucked out of the room because all the
+// colors brighten visibly, as though some intervening medium has been removed."
+// The first reported level is a sharpening, not a hallucination: no geometry,
+// no motion, only more of what is already present.
+//
+// Implemented as a four-tap unsharp mask. This is a photographic operation on a
+// photograph. Nothing in the neural field produces it, and at this point in the
+// scroll the field is still sub-threshold and idle.
+vec3 clarity(vec2 luv, vec3 c) {
+  if (uThreshold < 0.001) return c;
+  vec2 e = vec2(0.0035, 0.0);
+  vec3 blur = (
+      texture2D(uTexture, texUV(luv + e.xy)).rgb
+    + texture2D(uTexture, texUV(luv - e.xy)).rgb
+    + texture2D(uTexture, texUV(luv + e.yx)).rgb
+    + texture2D(uTexture, texUV(luv - e.yx)).rgb
+  ) * 0.25;
+  return c + (c - blur) * uThreshold * 0.85;
+}
+
+// ── Act VI: retino-cortical map  z → log(z) ───────────────────────────────────
 // Log-polar mapping: fovea expands to ~50% of V1 surface area, periphery compresses.
 vec2 corticalUV(vec2 uv) {
   vec2  c  = (uv - 0.5) * 2.0;
@@ -43,7 +67,7 @@ vec2 corticalUV(vec2 uv) {
   return vec2(cx, cy);
 }
 
-// ── Act IV: Poincaré disk (hyperbolic magnification) ─────────────────────────
+// ── Act VI: Poincaré disk (hyperbolic magnification) ─────────────────────────
 // Exponential centre expansion models DMT-induced hyperbolic phenomenal geometry
 // (Gomez-Emilsson / QRI). Centre maps to infinite hyperbolic space.
 vec2 poincareUV(vec2 uv, float t) {
@@ -56,6 +80,12 @@ vec2 poincareUV(vec2 uv, float t) {
 }
 
 // ── Psychedelic drifting ──────────────────────────────────────────────────────
+// The second of the four operators in Gomez-Emilsson's algorithmic reduction
+// (2016, non-peer-reviewed): feature detachment, breathing walls, textures that
+// flow constantly. Like the feedback echo in postfx.js this is not derived from
+// the Wilson-Cowan field. It implements a second model, and the two are kept
+// apart on the about page.
+//
 // Domain-warped UV displacement · models feature detachment and texture fluidity.
 // Two-layer domain warp: slow boundary undulation feeds into fast surface flow.
 // Scales as DMT² so onset is gentle below ~0.4, strong toward 1.0.
@@ -73,7 +103,7 @@ vec2 driftUV(vec2 uv) {
 }
 
 void main() {
-  // ── Act IV: Poincaré warp applied to screen UV before anything else ────────
+  // ── Act VI: Poincaré warp applied to screen UV before anything else ────────
   // When uCurvature > 0 this bends the lookup into hyperbolic space.
   vec2 wUv = (uCurvature > 0.001) ? poincareUV(vUv, uCurvature) : vUv;
 
@@ -82,13 +112,14 @@ void main() {
   float diskR    = length((vUv - 0.5) * 2.0);
   float diskMask = mix(1.0, smoothstep(1.02, 0.88, diskR), uCurvature);
 
-  // ── Act II: retino-cortical blend (natural → log-polar) ──────────────────
+  // ── Act VI: retino-cortical blend (natural → log-polar) ──────────────────
   float cortT = smoothstep(0.50, 1.0, uRetino);
 
   // Drifting displaces the texture lookup; retino mode disables it (log-polar
   // handles its own spatial transformation and drift would clash).
   vec2  drift  = driftUV(wUv) * (1.0 - cortT);
   vec4 texNat  = texture2D(uTexture, texUV(wUv + drift));
+  texNat.rgb   = clarity(wUv + drift, texNat.rgb);
   vec4 texCort = texture2D(uTexture, texUV(corticalUV(wUv)));
   vec4 tex     = mix(texNat, texCort, cortT);
 
@@ -111,18 +142,80 @@ void main() {
   );
   vec3 base = tinted * shading * vignette * edgeFade;
 
-  // ── Act III: neural luminance modulation ──────────────────────────────────
+  // ── Act IV: neural luminance modulation ──────────────────────────────────
   float modulate = 1.0 + vSimDev * uDMT * 1.4;
   base *= modulate * diskMask;
 
-  // ── Grade 1: vibrance + warmth (fades in act I→II, stays through finale) ──
-  // Warmth: amber lift in shadows, slight blue suppression.
-  // Vibrance: smart saturation · muted areas boosted more than already-vivid ones.
+  // ── Act V · level 3: lighting the world-sheet ─────────────────────────────
+  //
+  // The vertex stage reads the field as a height map. Left unlit it stays a
+  // brightness pattern; a height map only reads as volume once it catches
+  // light. The normal is taken from the gradient of the simulation texture, so
+  // the surface that is lit is the surface the field actually built.
+  //
+  // The honest split: the shape is field-derived, the lighting is not. One
+  // fixed key light and a rim term are rendering decisions and are listed with
+  // the imposed effects. The floor stays near its unlit brightness so the gain
+  // reads as relief rather than as an exposure change.
+  if (uWorldSheet > 0.001) {
+    float d  = 2.0 / 512.0;
+    float hL = texture2D(uSimTexture, vUv - vec2(d, 0.0)).r;
+    float hR = texture2D(uSimTexture, vUv + vec2(d, 0.0)).r;
+    float hD = texture2D(uSimTexture, vUv - vec2(0.0, d)).r;
+    float hU = texture2D(uSimTexture, vUv + vec2(0.0, d)).r;
+
+    vec3  n   = normalize(vec3((hL - hR) * 12.0, (hD - hU) * 12.0, 1.0));
+    vec3  L   = normalize(vec3(-0.45, 0.58, 0.68));
+    float lam = max(dot(n, L), 0.0);
+    float rim = pow(1.0 - clamp(n.z, 0.0, 1.0), 2.2);
+
+    // vSheet carries the actual displacement of this fragment, so the rim only
+    // fires on what rose out of the floor rather than on every steep gradient.
+    float lifted = clamp(vSheet / 0.378, 0.0, 1.0);
+
+    base *= mix(1.0, 0.45 + lam * 0.85, uWorldSheet);
+    base += vec3(0.16, 0.19, 0.21) * rim * lifted * uWorldSheet * 0.42;
+  }
+
+  // ── Grade 1: warmth + vibrance, with the tonal range carried along ────────
+  //
+  // Warmth alone costs range at both ends. The red lift settles into the toe
+  // and the blue suppression pulls the white point down, so the frame reads as
+  // though contrast had been removed rather than as though it had been graded.
+  // On a near-monochrome planform, where the whole image is the black-to-white
+  // axis, that is the only thing you see.
+  //
+  // So the tint does not travel alone. Three moves ride the same uGrade and
+  // arrive at exactly the same rate:
+  //   1. the tint itself, which owns the midtones
+  //   2. highlight neutralisation, so white stays white instead of going cream
+  //   3. a highlight additive and a toe recovery, which push the two ends of the
+  //      range apart by more than the tint pulled them together
+  // The black-to-white space widens with the colour instead of shrinking under it.
   vec3 warm = vec3(
     base.r * (1.0 + uGrade * 0.07),
     base.g * (1.0 + uGrade * 0.018),
     base.b * (1.0 - uGrade * 0.09)
   );
+
+  float lumT   = dot(warm, vec3(0.2126, 0.7152, 0.0722));
+  float hiMask = smoothstep(0.58, 1.02, lumT);
+  float loMask = 1.0 - smoothstep(0.0, 0.28, lumT);
+
+  // Split tone: the tint is blended back out toward the top of the range, so
+  // the warmth lives in the midtones and the highlights keep their neutrality.
+  warm = mix(warm, base, hiMask * uGrade * 0.80);
+
+  // Specular additive, near-neutral and weighted to the top of the range. This
+  // is the term that makes the grade read as gain rather than as haze.
+  warm += vec3(0.085, 0.088, 0.092) * hiMask * uGrade;
+
+  // Toe recovery: the same curve in the other direction, weighted warm so it
+  // takes out exactly the cast the tint put into the shadows.
+  warm -= vec3(0.034, 0.028, 0.020) * loMask * uGrade;
+  warm  = max(warm, 0.0);
+
+  // Vibrance reads the compensated value, not the raw tint.
   float lumW  = dot(warm, vec3(0.2126, 0.7152, 0.0722));
   float mxW   = max(warm.r, max(warm.g, warm.b));
   float satW  = clamp(mxW - lumW, 0.0, 1.0);

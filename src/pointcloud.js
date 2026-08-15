@@ -24,10 +24,16 @@ const LIFT_SCALE = 0.48
 
 const VERT = /* glsl */`
   uniform sampler2D uSimTexture;
+  uniform sampler2D uTexture;      // the photograph, same one the mesh displaces by
   uniform float     uDMT;
+  uniform float     uSurface;      // act I photo-displacement ramp, mirrors surface.vert
+  uniform float     uDispScale;    // uDisplacementScale from surface.js
+  uniform float     uTexAspect;
+  uniform float     uScreenAspect;
   uniform float     uTime;
-  uniform float     uCurvature;   // Poincaré disk warp (Act IV)
+  uniform float     uCurvature;   // Poincaré disk warp (Act VI)
   uniform float     uRetino;      // retino-cortical blend (Act VI)
+  uniform float     uWorldSheet;  // Act V · level 3, surface expresses the field
   uniform float     uWaveFront;   // world-space wave radius; -1 = not yet started
   uniform float     uPlaneW;      // actual world-space plane width (aspect-corrected)
 
@@ -37,6 +43,16 @@ const VERT = /* glsl */`
   varying float vAlpha;
 
   #define PI 3.14159265358979
+
+  // Cover-mode UV correction. Must match surface.vert and surface.frag: the
+  // particles ride on the mesh, so they have to read the photograph the same way.
+  vec2 texUV(vec2 uv) {
+    if (uTexAspect > uScreenAspect) {
+      return vec2((uv.x - 0.5) * (uScreenAspect / uTexAspect) + 0.5, uv.y);
+    } else {
+      return vec2(uv.x, (uv.y - 0.5) * (uTexAspect / uScreenAspect) + 0.5);
+    }
+  }
 
   // Poincaré disk: exponential centre expansion (hyperbolic geometry).
   // Particles represent V1 excitation nodes in cortical space, the Poincaré
@@ -56,7 +72,25 @@ const VERT = /* glsl */`
     float e = texture2D(uSimTexture, aUv).r;
     vActivation = e;
 
-    float lift = max(e - 0.30, 0.0) * uDMT * ${LIFT_SCALE.toFixed(2)};
+    // ── Ride the mesh ─────────────────────────────────────────────────────
+    // These points are not a free-floating layer, they mark field nodes on the
+    // surface. So their height has to be the surface's height, term for term:
+    // the photograph's luminance displacement, the field deviation, the breath.
+    //
+    // An earlier version lifted them by max(e - 0.30, 0) alone. That had no
+    // downward branch and ignored the photograph entirely, so the points sat on
+    // a near-flat plane while the mesh moved underneath them. At low relief it
+    // passed; once the world-sheet gave the mesh real depth it read as a dotted
+    // sheet of glass hovering in front of the landscape.
+    float luma = dot(texture2D(uTexture, texUV(aUv)).rgb, vec3(0.2126, 0.7152, 0.0722));
+    float dev  = e - 0.33;
+
+    float meshZ = luma * uDispScale * uSurface
+                + dev  * uDispScale * uDMT * 1.4;
+
+    float breathAmp  = 0.002 + uSurface * 0.005;
+    float breathRate = 0.4   + uSurface * 0.6;
+    meshZ += sin(uTime * breathRate) * breathAmp;
 
     // Poincaré only · corticalUV is a texture-sampling transform (where to look
     // in an image), not a spatial position transform. The tanh formulation keeps
@@ -66,7 +100,7 @@ const VERT = /* glsl */`
     vec3 pos = vec3(
       (pUv.x - 0.5) * ${PLANE_W.toFixed(3)},
       (pUv.y - 0.5) * ${PLANE_H.toFixed(3)},
-      ${BASE_Z.toFixed(3)} + lift
+      ${BASE_Z.toFixed(3)} + meshZ
     );
 
     gl_Position = projectionMatrix * modelViewMatrix * vec4(pos, 1.0);
@@ -83,14 +117,23 @@ const VERT = /* glsl */`
     float behind        = uWaveFront - distFromCentre;  // positive = wave already passed
     float waveGate      = (uWaveFront < 0.0) ? 0.0 : smoothstep(0.0, 0.18, behind);
 
+    // Act V handover: once the world-sheet lifts, the mesh expresses the field
+    // as geometry, and this layer cannot follow it. Matching the world-sheet
+    // displacement here would mean a third copy of that function kept in sync by
+    // hand, for a layer whose only job was to make the field visible while the
+    // surface could only modulate brightness. So the points hand over instead:
+    // they are how the field is shown before it has volume, and they are gone
+    // once it does. The plasma volume in postfx.js keeps carrying the glow.
+    float sheetFade = 1.0 - smoothstep(0.05, 0.55, uWorldSheet);
+
     // Act VI fade-out: as the retino-cortical map engages, the cortical-mapped
-    // surface texture and statue-emergence displacement express the same
-    // activation directly. The particle layer becomes redundant, fading it out
-    // here prevents the visible disconnect between particles (which can't follow
-    // the log-polar transform meaningfully) and the morphing surface beneath.
+    // surface texture expresses the activation directly. The particle layer
+    // becomes redundant, and fading it out here prevents the visible disconnect
+    // between particles (which can't follow the log-polar transform
+    // meaningfully) and the morphing surface beneath.
     float retinoFade = 1.0 - smoothstep(0.30, 0.80, uRetino);
 
-    float alpha = uDMT * uDMT * onset * 0.92 * waveGate * retinoFade;
+    float alpha = uDMT * uDMT * onset * 0.92 * waveGate * sheetFade * retinoFade;
     vAlpha = alpha;
   }
 `
@@ -157,10 +200,16 @@ export function createPointCloud() {
   const material = new THREE.ShaderMaterial({
     uniforms: {
       uSimTexture: { value: null },
+      uTexture:      { value: null },
       uDMT:        { value: 0.0 },
+      uSurface:      { value: 0.0 },
+      uDispScale:    { value: 0.28 },  // must match uDisplacementScale in surface.js
+      uTexAspect:    { value: 1.0 },
+      uScreenAspect: { value: window.innerWidth / window.innerHeight },
       uTime:       { value: 0.0 },
       uCurvature:  { value: 0.0 },
       uRetino:     { value: 0.0 },
+      uWorldSheet: { value: 0.0 },
       uWaveFront:  { value: -1.0 },
       uPlaneW:     { value: PLANE_W * (window.innerWidth / window.innerHeight) / (PLANE_W / PLANE_H) },
     },
@@ -181,12 +230,23 @@ export function createPointCloud() {
 
   return {
     mesh: points,
-    update(simTexture, dmt, time, curvature, retino, waveFront) {
+    // surfaceUniforms is surface.material.uniforms. The point cloud reads the
+    // photo, the surface ramp and the aspect corrections straight off the mesh
+    // rather than keeping its own copies, so the two can never drift apart.
+    update(simTexture, dmt, time, curvature, retino, waveFront, worldSheet, surfaceUniforms) {
+      if (surfaceUniforms) {
+        material.uniforms.uTexture.value      = surfaceUniforms.uTexture.value
+        material.uniforms.uSurface.value      = surfaceUniforms.uSurface.value
+        material.uniforms.uDispScale.value    = surfaceUniforms.uDisplacementScale.value
+        material.uniforms.uTexAspect.value    = surfaceUniforms.uTexAspect.value
+        material.uniforms.uScreenAspect.value = surfaceUniforms.uScreenAspect.value
+      }
       material.uniforms.uSimTexture.value = simTexture
       material.uniforms.uDMT.value        = dmt
       material.uniforms.uTime.value       = time
       material.uniforms.uCurvature.value  = curvature
       material.uniforms.uRetino.value     = retino
+      material.uniforms.uWorldSheet.value = worldSheet
       material.uniforms.uWaveFront.value  = waveFront
     },
     resize(screenAspect) {
