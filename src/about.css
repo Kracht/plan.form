@@ -1,16 +1,16 @@
 /* ── Font trio ────────────────────────────────────────────────────────────────
  *
- *  Cormorant Garamond  — display headings
+ *  Cormorant Garamond  · display headings
  *    Academic serif with mathematical elegance. Extremely fine strokes read
  *    beautifully large against dark backgrounds. Used for h1 hero title and
  *    section h2 headings.
  *
- *  Space Grotesk  — body text & UI
+ *  Space Grotesk  · body text & UI
  *    Geometric sans with slight technical character. Clean and readable at
  *    small sizes; more alive than Inter. Used for all running body text,
  *    navigation links, and prose.
  *
- *  IBM Plex Mono  — labels, equations, metadata
+ *  IBM Plex Mono  · labels, equations, metadata
  *    IBM's own scientific/technical mono. Cleaner than Courier, purpose-built
  *    for data and code documentation. Used for nav-brand, section labels,
  *    act timestamps, equation blocks, and all metadata strings.
@@ -65,7 +65,7 @@ nav {
   border-bottom: 1px solid var(--rule);
 }
 
-/* plan.form wordmark — mono, small, tracked wide */
+/* plan.form wordmark, mono, small, tracked wide */
 .nav-brand {
   font-family: var(--font-mono);
   font-size: 0.62rem;
@@ -122,9 +122,9 @@ nav {
 .hero-bg {
   position: absolute;
   inset: 0;
-  background-size: cover;
-  background-position: center;
-  filter: brightness(0.14) saturate(0.5);
+  background:
+    radial-gradient(ellipse 120% 90% at 50% 40%, rgba(22, 34, 40, 0.90) 0%, rgba(8, 10, 12, 0) 70%),
+    radial-gradient(ellipse 70% 60% at 68% 78%, rgba(14, 26, 30, 0.70) 0%, rgba(8, 10, 12, 0) 65%);
   z-index: 0;
 }
 
@@ -134,7 +134,7 @@ nav {
   max-width: 640px;
 }
 
-/* Mono label above the title — tiny, tracked out */
+/* Mono label above the title · tiny, tracked out */
 .hero-label {
   font-family: var(--font-mono);
   font-size: 0.58rem;
@@ -144,7 +144,7 @@ nav {
   margin-bottom: 2.2rem;
 }
 
-/* The plan.form title — display serif, large, no uppercase, italic */
+/* The plan.form title, display serif, large, no uppercase, italic */
 .hero h1 {
   font-family: var(--font-display);
   font-size: clamp(3.2rem, 9vw, 6.5rem);
@@ -212,7 +212,7 @@ section {
 
 /* ── Typography ───────────────────────────────────────────────────────────── */
 
-/* Section headings — display serif, elegant, not uppercase */
+/* Section headings · display serif, elegant, not uppercase */
 h2 {
   font-family: var(--font-display);
   font-size: clamp(1.5rem, 3.5vw, 2.2rem);
@@ -224,7 +224,7 @@ h2 {
   line-height: 1.25;
 }
 
-/* Sub-section headings — body sans, small caps feel via tracking */
+/* Sub-section headings · body sans, small caps feel via tracking */
 h3 {
   font-family: var(--font-body);
   font-size: 0.70rem;
@@ -331,6 +331,37 @@ em {
   margin-bottom: 0;
   padding-bottom: 0;
   border-bottom: none;
+}
+
+/* ── Honest accounting ────────────────────────────────────────────────────── */
+.accounting-list {
+  list-style: none;
+  margin-top: 1.2rem;
+}
+
+.accounting-list li {
+  position: relative;
+  padding-left: 1.6rem;
+  margin-bottom: 1.1rem;
+}
+
+.accounting-list li:last-child { margin-bottom: 0; }
+
+.accounting-list li::before {
+  content: "·";
+  position: absolute;
+  left: 0.4rem;
+  color: var(--accent);
+}
+
+.accounting-list strong {
+  font-weight: 500;
+}
+
+/* Email shown as text, never as a mailto link */
+.mail-obf {
+  font-family: var(--font-mono);
+  letter-spacing: 0.02em;
 }
 
 /* ── References ───────────────────────────────────────────────────────────── */

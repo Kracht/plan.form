@@ -77,7 +77,7 @@ function normalizeAndWrite(tmp, data, size) {
 }
 
 // ── 1. Log-spaced concentric rings ────────────────────────────────────────────
-// cos(k · log r) — rings with logarithmically increasing spacing.
+// cos(k · log r) · rings with logarithmically increasing spacing.
 // In cortical (log-polar) space this is perfectly regular vertical stripes.
 // → Funnel / tunnel form constant (Ermentrout & Cowan 1979, Bressloff 2001).
 function genRings(data, size) {
@@ -97,7 +97,7 @@ function genRings(data, size) {
 }
 
 // ── 2. Radial spokes ─────────────────────────────────────────────────────────
-// cos(n · θ) — n-fold angular pattern.
+// cos(n · θ) · n-fold angular pattern.
 // In cortical space this maps to horizontal stripes (the θ axis is preserved).
 // → Cobweb / mandala form constant. Pinwheel singularity at the centre models
 //   the orientation-column singularities of V1 (Bonhoeffer & Grinvald 1991).
@@ -118,9 +118,9 @@ function genSpokes(data, size) {
 }
 
 // ── 3. Logarithmic spiral ─────────────────────────────────────────────────────
-// cos(k · log r + n · θ) — combines the radial and angular form constants.
+// cos(k · log r + n · θ) · combines the radial and angular form constants.
 // In cortical space this is diagonal stripes at angle arctan(n/k).
-// → Spiral form constant — a superposition of funnel and cobweb.
+// → Spiral form constant · a superposition of funnel and cobweb.
 //   Logarithmic spirals are one of the four canonical hallucination geometries
 //   (Ermentrout & Cowan 1979, Class III).
 const SPIRAL_K = 6    // radial frequency
@@ -179,7 +179,7 @@ function genPink(data, size) {
 // ── 5. Isotropic band-limited noise ──────────────────────────────────────────
 // Single-scale isotropic noise matched to the Wilson-Cowan characteristic
 // wavelength. No dominant orientation → hexagonal planform.
-// (Bressloff et al. 2001, Table 1 — isotropic input → hexagonal planform.)
+// (Bressloff et al. 2001, Table 1, isotropic input → hexagonal planform.)
 genNoise._phases = Array.from({length: 24}, () => Math.random() * TWO_PI)
 function genNoise(data, size) {
   const N      = 24

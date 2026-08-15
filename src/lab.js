@@ -222,7 +222,7 @@ export function createLab(surface, gpuSim) {
     activeTile = tileEl ?? null
   }
 
-  // For procedural DataTextures (already in GPU memory — no load needed)
+  // For procedural DataTextures (already in GPU memory, no load needed)
   function applyDirectTexture(tex, tileEl) {
     tex.anisotropy  = 8
     tex.needsUpdate = true

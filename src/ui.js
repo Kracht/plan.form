@@ -1,4 +1,4 @@
-// ── UI — DMT slider + reset ───────────────────────────────────────────────────
+// ── UI · DMT slider + reset ───────────────────────────────────────────────────
 
 export function createUI(onDMTChange, onReset) {
   const style = document.createElement('style')
@@ -73,7 +73,7 @@ export function createUI(onDMTChange, onReset) {
       color: rgba(255,255,255,0.7);
     }
 
-    /* Bifurcation zone indicator — subtle colour shift on the slider track */
+    /* Bifurcation zone indicator · subtle colour shift on the slider track */
     #dmt-slider.above-threshold {
       background: linear-gradient(
         to right,

@@ -1,4 +1,4 @@
-// Wilson-Cowan — Inhibitory population (I)
+// Wilson-Cowan · Inhibitory population (I)
 //
 // GPUComputationRenderer prepends:
 //   uniform sampler2D textureE;

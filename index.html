@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>plan.form — about</title>
+  <title>plan.form · about</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Space+Grotesk:wght@300;400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" />
@@ -17,6 +17,7 @@
   <ul class="nav-links">
     <li><a href="#acts">Acts</a></li>
     <li><a href="#science">Science</a></li>
+    <li><a href="#accounting">Accounting</a></li>
     <li><a href="#references">References</a></li>
     <li><a href="#acknowledgements">Acknowledgements</a></li>
     <li><a href="#about">About</a></li>
@@ -27,13 +28,13 @@
 
 <!-- ── Hero ──────────────────────────────────────────────────────────────── -->
 <header class="hero">
-  <div class="hero-bg" style="background-image:url('./SymmetrieHQ.jpeg')"></div>
+  <div class="hero-bg"></div>
   <div class="hero-content">
     <p class="hero-label">Neural Field Visualisation · WebGL · 2026</p>
     <h1>plan.form</h1>
     <p class="hero-subtitle">
       A scrollytelling WebGL experience that runs the Wilson-Cowan neural field
-      equations in real time on a GPU — an artistic interpretation of the
+      equations in real time on a GPU. An artistic interpretation of the
       mathematical transformation DMT may apply to the primary visual cortex.
     </p>
     <a class="btn-launch" href="./experience.html">Launch experience →</a>
@@ -44,11 +45,11 @@
 <section id="premise">
   <div class="section-inner">
     <span class="section-label">The premise</span>
-    <h2>DMT may not hallucinate — but reveal?</h2>
+    <h2>DMT may not hallucinate, but reveal?</h2>
     <p>
       Many existing DMT visualisations make the same mistake: they add exotic
-      content to a blank canvas. Fractal renders, VJ loops, AI-generated imagery —
-      all attempt to depict the experience through novelty. This does the opposite.
+      content to a blank canvas. Fractal renders, VJ loops, AI-generated imagery.
+      All of them attempt to depict the experience through novelty. This does the opposite.
     </p>
     <p>
       plan.form takes an unremarkable photograph and asks: what if the pattern
@@ -58,10 +59,11 @@
       generating structure spontaneously.
     </p>
     <p>
-      The geometry that emerges is not designed. It is the stable solution to a
-      differential equation — the same equation that governs V1 lateral connectivity
-      in every human brain. The mathematics produces the aesthetics, not the other
-      way around.
+      The geometry is not drawn. It is the stable solution to a differential
+      equation, the same equation that governs V1 lateral connectivity in every
+      human brain. What the mathematics produces is structure. Turning that
+      structure into an image took a great many decisions that are not in the
+      mathematics, and those are listed openly further down.
     </p>
     <p>
       This is an artistic interpretation built on scientific models, not a
@@ -79,7 +81,7 @@
     <h2>Six acts, one continuous transformation</h2>
     <p style="margin-bottom:3rem;">
       Scroll position maps directly to shader uniforms. There is no timeline,
-      no animation loop driving the narrative — only the reader's own pace
+      no animation loop driving the narrative, only the reader's own pace
       through the mathematics.
     </p>
 
@@ -89,8 +91,8 @@
         <h3>I · Primary Visual Cortex</h3>
         <p>
           The photograph is rendered as a luminance-displaced 3D surface. Each of
-          the 197,000 vertices is pushed outward in proportion to local brightness —
-          brighter regions protrude, darker regions recede. Mouse movement drives camera
+          the 197,000 vertices is pushed outward in proportion to local brightness.
+          Brighter regions protrude, darker regions recede. Mouse movement drives camera
           parallax. V1 receives this signal. Its lateral connectivity is active but
           stable, patterns suppressed by the dominance of external input.
         </p>
@@ -100,8 +102,8 @@
         <span class="act-scroll">20 – 36 %</span>
         <h3>II · Wilson–Cowan Field</h3>
         <p>
-          A 512² GPU simulation of two coupled neural populations — excitatory (E)
-          and inhibitory (I) — activates alongside the image. The field equation
+          A 512² GPU simulation of two coupled neural populations, excitatory (E)
+          and inhibitory (I), activates alongside the image. The field equation
           runs 8 integration steps per rendered frame. At this stage the external
           image dominates. The system is stable. For now.
         </p>
@@ -113,7 +115,7 @@
         <p>
           Lateral excitatory coupling w<sub>EE</sub> crosses a critical threshold.
           The homogeneous steady state loses stability through a Turing instability.
-          Spatial patterns form spontaneously — not from noise, but from the
+          Spatial patterns form spontaneously, not from noise but from the
           image's own fine structure, which seeds the planform nodes at texture
           boundaries.
         </p>
@@ -124,10 +126,11 @@
         <h3>IV · Hexagonal Planform</h3>
         <p>
           The field self-organises into the planform Bressloff et al. (2001)
-          predict for V1 under elevated cortical excitability — the gain increase
+          predict for V1 under elevated cortical excitability: the gain increase
           hallucinogens are thought to induce via 5HT<sub>2A</sub>-mediated action
-          on V1. The geometry is intrinsic to the cortical connectivity kernel —
-          independent of the image beneath it. This is the same pattern class
+          on V1. The symmetry class and the spacing of the pattern are intrinsic to
+          the cortical connectivity kernel. Where its nodes land is not: the image
+          continues to seed them throughout. This is the same pattern class
           Klüver (1928) catalogued from mescaline reports nearly a century earlier.
         </p>
       </div>
@@ -148,10 +151,11 @@
         <h3>VI · Entity Emergence</h3>
         <p>
           z → log(z). The complex logarithm maps the visual field to cortical
-          coordinates. Bilateral symmetry locks in. The planform's nodal structure —
-          bilaterally symmetric, hexagonally arranged, radially organised — becomes
-          structurally indistinguishable from a face. Higher cortex completes the
-          pattern. Objects acquire agency. Entities appear.
+          coordinates. Bilateral, nodal, axially organised structure is what
+          face-selective cortex responds to. That is a claim about the person looking
+          at the screen, not about the field behind it. Here the figures are also
+          pushed into place by hand. The open question is whether a cortex at
+          supercritical gain would need any such help.
         </p>
       </div>
     </div>
@@ -166,23 +170,32 @@
 
     <!-- 1. Wilson-Cowan -->
     <div class="science-block">
-      <h3>1 · The Neural Field — Wilson-Cowan &amp; Bifurcation</h3>
+      <h3>1 · The Neural Field · Wilson-Cowan &amp; Bifurcation</h3>
       <p>
         The simulation runs two coupled ordinary differential equations per spatial
         point on a 512 × 512 grid, updated 8 times per rendered frame via
         WebGL2 ping-pong render targets:
       </p>
-      <pre class="eq">τ_E · ∂E/∂t = −E + σ( w_EE · K_exc⊛E  −  w_EI · I  +  I_ext · (1−α) )
+      <pre class="eq">τ_E · ∂E/∂t = −E + σ( w_EE · K_exc⊛E  −  w_inh · K_inh⊛E  −  w_EI · I  +  I_ext )
 τ_I · ∂I/∂t = −I + σ( w_IE · E  −  w_II · I )
+
+I_ext = luminance · (1−α) · 0.45  +  edgeEnergy · 0.10
 
 σ(x) = 1 / (1 + exp(−5 · (x − 0.28)))   [sigmoid activation]
 ⊛ = spatial convolution with lateral connectivity kernel</pre>
+      <p>
+        Both kernels sample the excitatory field: K<sub>exc</sub> over a short
+        radius, K<sub>inh</sub> over a long one. Their difference is the Mexican
+        hat. Note that the second term in I<sub>ext</sub> does not scale with α,
+        which is why the pattern stays anchored to the image at every value of the
+        parameter.
+      </p>
       <p>
         The spatial convolution uses two ring samplers in GLSL: a
         <strong>12-point ring</strong> (30° spacing, 6-fold symmetry) at radius
         6 px for short-range excitation, and a 16-point ring at radius 20 px for
         long-range inhibition. Their difference approximates the
-        <strong>Mexican-hat lateral connectivity kernel</strong> — the anatomical
+        <strong>Mexican-hat lateral connectivity kernel</strong>: the anatomical
         reality that excitatory neurons form local clusters while inhibitory
         interneurons project further. The 12-point ring's 6-fold symmetry is
         deliberate: an 8-point ring would introduce 4-fold bias and spuriously
@@ -206,24 +219,25 @@
       </p>
       <p>
         This is a <strong>Turing instability</strong> (Turing, 1952). The
-        critical wavevector k* — the spatial frequency that first goes unstable —
+        critical wavevector k*, the spatial frequency that first goes unstable,
         is determined by the ratio of excitatory to inhibitory kernel radii. For
-        r<sub>exc</sub> = 6 px and r<sub>inh</sub> = 20 px, this selects a
-        characteristic wavelength of approximately 52 px, producing the hexagonal
-        planform. The same mathematics that spaces the spots on a leopard's coat
-        spaces the nodes of the DMT pattern.
+        r<sub>exc</sub> = 6 px and r<sub>inh</sub> = 20 px, a rule-of-thumb estimate
+        over those radii puts the characteristic wavelength near 52 px; the true
+        value for a 12- and 16-tap ring difference deviates from this. The same
+        mathematics that spaces the spots on a leopard's coat spaces the nodes of
+        the DMT pattern.
       </p>
       <p>
         The external input I<sub>ext</sub> includes a persistent high-frequency
         edge signal derived from the image texture. This seeds planform nodes at
-        image texture boundaries — ensuring the pattern that emerges is
+        image texture boundaries, ensuring the pattern that emerges is
         topographically anchored to the input, not arbitrary.
       </p>
     </div>
 
     <!-- 2. Form Constants -->
     <div class="science-block">
-      <h3>2 · Form Constants — Klüver to Bressloff</h3>
+      <h3>2 · Form Constants · Klüver to Bressloff</h3>
       <p>
         In 1928, psychologist Heinrich Klüver systematically documented the
         geometric patterns that appear universally across mescaline experiences,
@@ -238,32 +252,35 @@
         explanation. They showed that the visual cortex, modelled as a neural
         field with lateral connectivity, undergoes symmetry-breaking instabilities
         that produce exactly these four pattern classes. The patterns are not
-        content imposed on the cortex — they are the cortex's own structural
+        content imposed on the cortex. They are the cortex's own structural
         resonances, made visible when external suppression is removed.
       </p>
       <p>
         Bressloff et al. (2001) extended this analysis with full consideration of
-        V1's functional architecture — orientation preference columns, ocular
-        dominance, the anisotropy of long-range horizontal connections — and showed
+        V1's functional architecture (orientation preference columns, ocular
+        dominance, the anisotropy of long-range horizontal connections) and showed
         that the symmetry group of V1 connectivity constrains the emergent planforms
         to a small set of geometric forms. These correspond precisely to Klüver's
         form constants. The <strong>hexagonal planform</strong>, which this
         simulation produces, is predicted for uniform, isotropic inputs under
-        elevated cortical excitability — the gain increase classical hallucinogens
+        elevated cortical excitability: the gain increase classical hallucinogens
         are thought to induce via 5HT<sub>2A</sub>-mediated action on V1.
       </p>
     </div>
 
     <!-- 3. Geometry -->
     <div class="science-block">
-      <h3>3 · Cortical Geometry — Retino-Cortical Map &amp; Hyperbolic Space</h3>
+      <h3>3 · Cortical Geometry · Retino-Cortical Map &amp; Hyperbolic Space</h3>
       <p>
         The visual field does not map linearly to V1 surface area. The central
         10° of vision maps to approximately half of V1's surface, despite covering
         only a small fraction of the total visual field (Horton &amp; Hoyt, 1991).
         This magnification follows a
-        logarithmic relationship — the <strong>retino-cortical transform</strong> —
-        described precisely by the complex logarithm:
+        logarithmic relationship, the <strong>retino-cortical transform</strong>,
+        described by the complex logarithm. The transform implemented here
+        reproduces the logarithmic form of that magnification qualitatively; its
+        constants are chosen for framing, not fitted to the published magnification
+        factor:
       </p>
       <pre class="eq">w = log(z)    where z = x + iy is position in the visual field
 
@@ -276,22 +293,21 @@ Implemented in GLSL:
   cy = atan(y, x) / (2π) + 0.5</pre>
       <p>
         Radial patterns in visual space become vertical stripes in cortical
-        coordinates. Concentric rings become horizontal stripes. The planform —
-        which lives in cortical coordinates — appears as a radially symmetric
-        mandala when mapped back through the inverse transform. The bilateral mirror
-        applied before the log-polar transform reflects V1's biological symmetry:
-        each hemisphere processes the contralateral visual field, so any cortical
-        pattern has a symmetric counterpart. The "double creature" forms arise from
-        this symmetry operation.
+        coordinates. Concentric rings become horizontal stripes. The planform,
+        which lives in cortical coordinates, appears as a radially symmetric
+        mandala when mapped back through the inverse transform. The doubled,
+        figure-like forms of the final act do not come from a symmetry operation.
+        They come from the angular wrap of the log-polar map combined with the
+        imposed displacement described under Honest accounting.
       </p>
       <p>
         Andres Gomez-Emilsson (2016) of the Qualia Research Institute proposed
         that DMT transforms the underlying geometry of phenomenal space from
         Euclidean to <strong>hyperbolic</strong>. In hyperbolic space, the
         circumference of a circle grows exponentially with radius rather than
-        linearly — providing exponentially more "room" per unit radius. This
+        linearly, providing exponentially more "room" per unit radius. This
         accommodates the information overload of DMT-amplified lateral connectivity,
-        and may explain the reported quality of "more real than real" — more
+        and may explain the reported quality of "more real than real": more
         information is encoded per perceived unit of space than is possible in
         Euclidean geometry. <em>Note: the QRI essay is a speculative philosophical
         proposal, not a peer-reviewed publication. It is used here as conceptual
@@ -305,25 +321,115 @@ Implemented in GLSL:
 
 where r = normalised screen radius, t = curvature parameter [0,1]</pre>
       <p>
-        Combined with four-fold colour averaging (sampling all four mirror
-        positions and averaging), this produces the disc-shaped mandala
-        characteristic of peak psychedelic visual geometry. The centre expands
-        without apparent limit; the boundary recedes forever.
+        This produces the disc-shaped mandala characteristic of peak psychedelic
+        visual geometry. The centre expands without apparent limit; the boundary
+        recedes forever.
       </p>
       <p>
         During the final transition, vertex displacement is recentred around the
         image's mid-luminance point, causing dark areas (the "floor" between
         creature forms) to recede and bright areas (the creature surfaces) to
-        protrude further. The bilateral symmetry of the planform activates the
-        <strong>fusiform face area</strong> (Kanwisher et al., 1997) — which
+        protrude further. That displacement is imposed, not computed: it is applied
+        to the photograph's luminance and is not derived from the field.
+        Separately, the <strong>fusiform face area</strong> (Kanwisher et al., 1997)
         responds to the structural features of a face (bilateral symmetry, nodal
         eye positions, axial organisation) independent of whether the input is
-        literally a face.
-        Higher cortex completes the pattern. This may be a neural correlate of
-        what Terence McKenna described as machine elves: deterministic pattern
+        literally a face. That is a claim about the person looking at the screen,
+        not about the simulation behind it. This may be a neural correlate of the
+        figure-like forms reported at the threshold of the experience: pattern
         completion operating on a supercritical neural field. Whether that accounts
-        for the full phenomenology — the agency, the narrative, the emotional weight
-        of entity encounters — is an open question the model does not resolve.
+        for the full phenomenology, meaning the agency, the narrative and the emotional
+        weight of entity encounters, is an open question the model does not resolve.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- ── Honest accounting ──────────────────────────────────────────────────── -->
+<section id="accounting">
+  <div class="section-inner">
+    <span class="section-label">Honest accounting</span>
+    <h2>Where the simulation stops and the composition begins</h2>
+
+    <p>
+      The neural field is real: two coupled populations, integrated on the GPU,
+      with no scripted outcome. Everything that follows the field is a design
+      decision. Separating the two matters more than either does alone, so here is
+      the full list.
+    </p>
+
+    <div class="science-block">
+      <h3>What the field determines</h3>
+      <p>
+        The symmetry class and the characteristic wavelength of the planform follow
+        from the connectivity kernel and from nothing else. The bifurcation is a
+        real loss of stability: below the threshold the homogeneous state is an
+        attractor, above it the patterned state is. The activation front is not a
+        visual overlay. It gates the simulation itself, so cortex outside the
+        front stays sub-bifurcation until the front arrives.
+      </p>
+    </div>
+
+    <div class="science-block">
+      <h3>What the image determines</h3>
+      <p>
+        Where the nodes land. A persistent high-frequency term derived from the
+        input texture enters the external drive and does not fade as the parameter
+        rises, so the pattern stays topographically anchored to the photograph
+        throughout. The kernel decides what class of pattern forms; the image
+        decides where it forms. An earlier version of this text claimed the
+        planform was independent of the image beneath it. That was wrong in the
+        second half.
+      </p>
+    </div>
+
+    <div class="science-block">
+      <h3>What is imposed</h3>
+      <ul class="accounting-list">
+        <li>
+          <strong>Entity geometry.</strong> In the final act, vertex displacement
+          is recentred on the image's mid-luminance so that bright forms protrude
+          and dark regions sink. This is not derived from the field. It is applied
+          to the photograph. The resemblance to standing figures is composed, not
+          computed.
+        </li>
+        <li>
+          <strong>Symmetry bias.</strong> The laboratory exposes an n-fold planform
+          selector. It injects a low-amplitude angular modulation into the external
+          drive, centred on the frame. The amplitude is small enough that the field
+          still resolves the competition, but the competition has been tipped, and
+          the centring biases toward a radial composition.
+        </li>
+        <li>
+          <strong>Boundary damping.</strong> Lateral coupling is pulled back toward
+          its sub-threshold value within the outer tenth of the frame. This
+          suppresses pattern at the edges and centres the image. It is a vignette
+          applied to the dynamics rather than to the picture.
+        </li>
+        <li>
+          <strong>Front timing.</strong> The activation front's trigger point, its
+          one-second delay and its constant speed are set by hand. In a neural
+          field, fronts emerge from the dynamics. Here the front is direction, and
+          the dynamics follow it.
+        </li>
+        <li>
+          <strong>Everything after the render.</strong> Bloom, radial chromatic
+          aberration, the plasma volume, two colour grades, drift, disk mask, edge
+          fades, frame feedback, tone mapping. None of this is in any model. It is
+          photography.
+        </li>
+      </ul>
+    </div>
+
+    <div class="science-block">
+      <h3>What the model does not claim</h3>
+      <p>
+        The face-like forms of the final act are a statement about the viewer, not
+        about the simulation. Face-selective cortex responding to bilateral, nodal,
+        axially organised structure is a claim about a human looking at a screen.
+        The screen is not doing it. Whether the same account extends to entity
+        encounters under DMT is an open question, and this piece raises it rather
+        than answering it.
       </p>
     </div>
   </div>
@@ -461,7 +567,7 @@ where r = normalised screen radius, t = curvature parameter [0,1]</pre>
           </td>
           <td>
             Fragment shader wave superposition architecture. Binaural audio
-            synchronised to field frequency. Contemplative pacing — a click as
+            synchronised to field frequency. Contemplative pacing: a click as
             ritual, not control. The restraint that separates scientific
             visualisation from generative spectacle.
           </td>
@@ -571,19 +677,19 @@ where r = normalised screen radius, t = curvature parameter [0,1]</pre>
 <section id="about">
   <div class="section-inner">
     <span class="section-label">About</span>
-    <h2>Kracht</h2>
+    <h2>Philipp Kuhlemann</h2>
     <div class="about-block">
       <div>
         <p>
-works as a systems engineer at a managed service provider in Mainz, where most of his professional time goes to Linux infrastructure, docker containers, and the integration work that keeps businesses running without announcing itself. The remainder goes toward reading — Hofstadter on strange loops, Jaynes on the origins of consciousness, Tegmark on the mathematical structure of physical reality — the kind of accumulation that builds slowly and occasionally produces unexpected outputs.
+works as a systems engineer at a managed service provider in Mainz, where most of his professional time goes to Linux infrastructure, docker containers, and the integration work that keeps businesses running without announcing itself. The remainder goes toward reading: Hofstadter on strange loops, Jaynes on the origins of consciousness, Tegmark on the mathematical structure of physical reality. The kind of accumulation that builds slowly and occasionally produces unexpected outputs.
         </p>
         <p>
-This project is one of them. It began with a narrow question: why do geometric visual constants recur so precisely across different altered states, and why do existing visualisations consistently fail to honour the precision the underlying mathematics actually offers? The implementation — a GPU-resident Wilson-Cowan simulation running in a browser, driven by scroll position — required considerably more GLSL than originally seemed reasonable. The mathematical foundations, at least, are well-established. What they fully explain is not.</p>
+This project is one of them. It began with a narrow question: why do geometric visual constants recur so precisely across different altered states, and why do existing visualisations consistently fail to honour the precision the underlying mathematics actually offers? The implementation, a GPU-resident Wilson-Cowan simulation running in a browser driven by scroll position, required considerably more GLSL than originally seemed reasonable. The mathematical foundations, at least, are well-established. What they fully explain is not.</p>
       </div>
       <div>
         <h3>Contact</h3>
         <p>
-          <a href="mailto:pk@sponde.de" style="color:inherit;">pk@sponde.de</a><br>
+          <span class="mail-obf">pk [at] sponde [dot] de</span><br>
           <a href="https://github.com/Kracht" target="_blank" style="color:inherit;">github.com/Kracht</a>
         </p>
         <h3>Source</h3>
@@ -601,6 +707,7 @@ This project is one of them. It began with a narrow question: why do geometric v
 <!-- ── Footer ─────────────────────────────────────────────────────────────── -->
 <footer>
   <span>plan.form · 2026</span>
+  <a href="https://sponde.de/impressum/">Impressum</a>
   <a href="./experience.html">Launch experience →</a>
 </footer>
 

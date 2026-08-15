@@ -3,8 +3,8 @@ uniform sampler2D uSimTexture;
 uniform float     uDisplacementScale;
 uniform float     uSurface;    // 0=flat → 1=full depth (panel 1 reveal)
 uniform float     uDMT;
-uniform float     uRetino;     // 0→1 bilateral mirror blend (finale)
-uniform float     uCurvature;  // Act V: Poincaré disk warp — must match surface.frag + pointcloud.js
+uniform float     uRetino;     // 0→1 finale: log-polar blend + imposed displacement
+uniform float     uCurvature;  // Act V: Poincaré disk warp, must match surface.frag + pointcloud.js
 uniform float     uTime;
 uniform float     uTexAspect;    // texture width/height
 uniform float     uScreenAspect; // screen width/height
@@ -13,7 +13,7 @@ uniform float     uScreenAspect; // screen width/height
 #define PLANE_W 2.0
 #define PLANE_H 2.667
 
-// Poincaré disk: identical to surface.frag and pointcloud.js — all three must stay in sync.
+// Poincaré disk: identical to surface.frag and pointcloud.js, all three must stay in sync.
 // Applied to vertex x,y so the mesh geometry follows the texture lookup and particles.
 vec2 poincareUV(vec2 uv, float t) {
   vec2  z  = (uv - 0.5) * 2.0;
@@ -61,7 +61,9 @@ void main() {
   float breathRate = 0.4   + uSurface * 0.6;
   displaced.z += sin(uTime * breathRate) * breathAmp;
 
-  // ── Machine elf emergence (inverted ring — teal closest, red farthest) ───
+  // ── Imposed entity ring ───────────────────────────────────────────────────
+  // Hand-placed elliptical annulus pushed toward the viewer. Not field-derived,
+  // not image-derived. A composition decision, disclosed on the about page.
   float dex   = (uv.x - 0.50) / 0.30;
   float dey   = (uv.y - 0.50) / 0.38;
   float dr    = length(vec2(dex, dey));
@@ -77,14 +79,14 @@ void main() {
   float statueDisp = (luma - 0.38) * uDisplacementScale * uRetino * 1.1;
   displaced.z += statueDisp;
 
-  vElevation = luma;   // blended luma — fragment shading tracks geometry
+  vElevation = luma;   // blended luma · fragment shading tracks geometry
   vSimDev    = dev;
 
-  // ── Act V: Poincaré disk — warp x,y to match texture lookup and particles ──
+  // ── Act V: Poincaré disk · warp x,y to match texture lookup and particles ──
   // The hyperbolic deformation applies to the entire visual field, so the mesh
   // geometry must follow. Without this the texture content and particle positions
   // migrate toward the centre while the bump landscape stays at Euclidean grid
-  // positions — causing the visible disconnect at the planform→hyperbolic boundary.
+  // positions · causing the visible disconnect at the planform→hyperbolic boundary.
   if (uCurvature > 0.001) {
     vec2 pUv = poincareUV(uv, uCurvature);
     displaced.x = (pUv.x - 0.5) * PLANE_W;

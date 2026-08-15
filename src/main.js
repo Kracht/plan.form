@@ -14,7 +14,7 @@ let renderer
 try {
   renderer = new THREE.WebGLRenderer({
     antialias: true,
-    alpha: true,                  // transparent canvas — sides show CSS body colour
+    alpha: true,                  // transparent canvas, sides show CSS body colour
   })
 } catch (e) {
   document.body.innerHTML = '<p style="color:#fff;padding:2rem;font-family:monospace">WebGL unavailable: ' + e.message + '</p>'
@@ -30,7 +30,7 @@ document.body.appendChild(renderer.domElement)
 // ─── Scene / Camera ───────────────────────────────────────────────────────────
 
 const scene = new THREE.Scene()
-// No scene.background — body { background: #080808 } shows through the canvas
+// No scene.background, body { background: #080808 } shows through the canvas
 
 // vFOV 48° at z=3.0 → visible height ≈ 2.67 units = plane height → full fill
 const camera = new THREE.PerspectiveCamera(
@@ -65,8 +65,12 @@ function initScene(texture) {
   postfx     = createPostFX(renderer)
   pointCloud = createPointCloud()
   scene.add(pointCloud.mesh)
+  // Activation front: the mesh is deliberately NOT added to the scene. The white
+  // ring read as a decorative flash and distracted from the pattern forming
+  // beneath it. The front itself stays: it gates the Wilson-Cowan field via
+  // uWaveFront and gates particle visibility, so the bifurcation still sweeps
+  // outward from the fovea. It is simply no longer drawn.
   waveFront  = createWaveFront()
-  scene.add(waveFront.mesh)
   lab        = createLab(surface, gpuSim)
 }
 
@@ -79,7 +83,7 @@ if (GALLERY.length > 0) {
     initScene(texture)
   })
 } else {
-  // No gallery — start directly with the first procedural texture
+  // No gallery · start directly with the first procedural texture
   const tex = PROCEDURAL[0].texture
   tex.anisotropy = renderer.capabilities.getMaxAnisotropy()
   initScene(tex)

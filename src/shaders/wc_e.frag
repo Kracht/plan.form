@@ -1,4 +1,4 @@
-// Wilson-Cowan — Excitatory population (E)
+// Wilson-Cowan · Excitatory population (E)
 //
 // GPUComputationRenderer prepends:
 //   uniform sampler2D textureE;   (previous E state)
@@ -11,7 +11,7 @@ uniform vec2      uTexelSize;
 // N-fold planform bias (0 = free / no bias; 3/4/6/8 = bias toward that planform class).
 // Injects a small cosine-angular seed into I_ext so the winning planform aligns
 // with the requested rotational symmetry. Amplitude kept low (≤ 0.03) so the
-// Wilson-Cowan dynamics remain in control — this tips the competition, not rigging it.
+// Wilson-Cowan dynamics remain in control · this tips the competition, not rigging it.
 uniform float     uLobeCount;
 // Travelling wave front: world-space radius of the activation boundary.
 // -1 = wave not yet triggered (full DMT everywhere).
@@ -21,12 +21,12 @@ uniform float     uWaveFront;
 // ── Sigmoid ───────────────────────────────────────────────────────────────────
 // threshold=0.28, beta=5 → S(0) ≈ 0.35, which puts the resting state high
 // enough to be visible AND to have sufficient slope for Turing instability.
-// f'(E*=0.35) = 5 * 0.35 * 0.65 ≈ 1.14 — well above the critical gain needed.
+// f'(E*=0.35) = 5 * 0.35 * 0.65 ≈ 1.14, well above the critical gain needed.
 float sigma(float x) {
     return 1.0 / (1.0 + exp(-5.0 * (x - 0.28)));
 }
 
-// ── 12-point ring (30° spacing) — short-range excitatory kernel ──────────────
+// ── 12-point ring (30° spacing) · short-range excitatory kernel ──────────────
 // 12 points gives 6-fold symmetry rather than the 4-fold of the old 8-point ring.
 // 4-fold bias caused the kernel itself to prefer square lattice planforms when the
 // input had no strong orientation. 6-fold is consistent with Bressloff (2001)'s
@@ -51,7 +51,7 @@ float ring12(sampler2D tex, vec2 uv, float r) {
     ) / 12.0;
 }
 
-// ── 16-point ring (22.5° spacing) — long-range inhibitory kernel ─────────────
+// ── 16-point ring (22.5° spacing), long-range inhibitory kernel ─────────────
 float ring16(sampler2D tex, vec2 uv, float r) {
     float a = r;
     float b = r * 0.9239;
@@ -92,7 +92,7 @@ void main() {
 
     // ── External input ────────────────────────────────────────────────────────
     float luma     = dot(texture2D(uInputTexture, uv).rgb, vec3(0.2126, 0.7152, 0.0722));
-    // High-frequency texture detail (edge energy) — does NOT fade with DMT.
+    // High-frequency texture detail (edge energy), does NOT fade with DMT.
     // This seeds planform nodes at foliage texture boundaries so the pattern
     // emerges from the image's own fine structure rather than arbitrary positions.
     float lumaFine = dot(texture2D(uInputTexture, uv + uTexelSize * 3.0).rgb, vec3(0.2126, 0.7152, 0.0722));

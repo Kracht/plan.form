@@ -1,13 +1,20 @@
 import * as THREE from 'three'
 
-// ── Travelling luminance wave ─────────────────────────────────────────────────
+// ── Travelling activation front ───────────────────────────────────────────────
+//
+// NOTE: `mesh` is no longer added to the scene, so the luminance ring described
+// below is not rendered. The state machine still runs and `getRadius()` still
+// drives uWaveFront in wc_e.frag and the particle gate in pointcloud.js, so the
+// bifurcation continues to sweep outward from the centre. Only the visible ring
+// was removed. Re-add the mesh in main.js to restore it.
+//
 //
 // A pure-white additive ring that sweeps outward from centre at bifurcation.
-// Additive blending means it adds luminance to whatever structure sits beneath —
+// Additive blending means it adds luminance to whatever structure sits beneath,
 // the patterns the Wilson-Cowan field has already formed briefly flare bright
 // as the front passes through them, then settle back.
 //
-// No colour gradient, no painted trail — just a tight Gaussian ring of light.
+// No colour gradient, no painted trail, just a tight Gaussian ring of light.
 
 const PLANE_W = 2.0
 const PLANE_H = 2.667
@@ -41,10 +48,10 @@ const FRAG = /* glsl */`
     float dist = length(c);
     float sd   = dist - uWaveFront;   // negative = inside swept zone
 
-    // Gaussian luminance pulse — tight ring of light
+    // Gaussian luminance pulse · tight ring of light
     float pulse = exp(-sd * sd * 90.0);
 
-    // Very brief afterglow in the wake — fades within ~0.15 world units
+    // Very brief afterglow in the wake · fades within ~0.15 world units
     float behind    = max(-sd, 0.0);
     float afterglow = exp(-behind * 18.0) * 0.18;
 
@@ -52,7 +59,7 @@ const FRAG = /* glsl */`
     float fade  = 1.0 - smoothstep(0.0, uMaxRadius, uWaveFront);
     float alpha = (pulse + afterglow) * (0.45 + fade * 0.55);
 
-    // Pure near-white — additive blending brightens whatever structure is beneath
+    // Pure near-white · additive blending brightens whatever structure is beneath
     gl_FragColor = vec4(vec3(0.92, 0.96, 1.0) * alpha, alpha);
   }
 `

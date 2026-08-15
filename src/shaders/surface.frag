@@ -5,7 +5,7 @@ uniform float     uRetino;    // Act VI: 0→1 finale
 uniform float     uCurvature; // Act V: 0→1
 uniform float     uGrade;     // Colour grade: 0=natural, 1=vibrance+warmth
 uniform float     uTexAspect;    // texture width/height
-uniform float     uScreenAspect; // screen width/height — for circular vignette + UV correction
+uniform float     uScreenAspect; // screen width/height, for circular vignette + UV correction
 uniform float     uTime;
 
 // Screen-space centred position: x scaled by aspect so distances are isotropic.
@@ -56,7 +56,7 @@ vec2 poincareUV(vec2 uv, float t) {
 }
 
 // ── Psychedelic drifting ──────────────────────────────────────────────────────
-// Domain-warped UV displacement — models feature detachment and texture fluidity.
+// Domain-warped UV displacement · models feature detachment and texture fluidity.
 // Two-layer domain warp: slow boundary undulation feeds into fast surface flow.
 // Scales as DMT² so onset is gentle below ~0.4, strong toward 1.0.
 vec2 driftUV(vec2 uv) {
@@ -77,7 +77,7 @@ void main() {
   // When uCurvature > 0 this bends the lookup into hyperbolic space.
   vec2 wUv = (uCurvature > 0.001) ? poincareUV(vUv, uCurvature) : vUv;
 
-  // Circular disk mask — UV space (vUv covers full plane = full screen),
+  // Circular disk mask · UV space (vUv covers full plane = full screen),
   // calibrated so the disk fills the plane with the corners fading to black.
   float diskR    = length((vUv - 0.5) * 2.0);
   float diskMask = mix(1.0, smoothstep(1.02, 0.88, diskR), uCurvature);
@@ -92,7 +92,7 @@ void main() {
   vec4 texCort = texture2D(uTexture, texUV(corticalUV(wUv)));
   vec4 tex     = mix(texNat, texCort, cortT);
 
-  // ── UV edge softener — fades all four plane boundaries to black ───────────
+  // ── UV edge softener · fades all four plane boundaries to black ───────────
   // The circular vignette doesn't reach black at the centre of each edge;
   // this linear fade ensures the geometry boundary is never visible.
   float edgeX = smoothstep(0.0, 0.06, vUv.x) * smoothstep(0.0, 0.06, 1.0 - vUv.x);
@@ -101,7 +101,7 @@ void main() {
 
   // ── Base photo shading ─────────────────────────────────────────────────────
   float shading  = 0.82 + vElevation * 0.36;
-  // Circular vignette in screen space — length(sc) = 0.5 at top/bottom edge centre
+  // Circular vignette in screen space · length(sc) = 0.5 at top/bottom edge centre
   float vignette = 1.0 - smoothstep(0.45, 1.05, length(sc(vUv)));
 
   vec3 tinted = mix(
@@ -117,7 +117,7 @@ void main() {
 
   // ── Grade 1: vibrance + warmth (fades in act I→II, stays through finale) ──
   // Warmth: amber lift in shadows, slight blue suppression.
-  // Vibrance: smart saturation — muted areas boosted more than already-vivid ones.
+  // Vibrance: smart saturation · muted areas boosted more than already-vivid ones.
   vec3 warm = vec3(
     base.r * (1.0 + uGrade * 0.07),
     base.g * (1.0 + uGrade * 0.018),
@@ -130,7 +130,7 @@ void main() {
   vec3  viv1  = clamp(mix(vec3(lumW), warm, 1.0 + vibW), 0.0, 1.15);
   base = mix(base, viv1, uGrade);
 
-  // ── Grade 2: final stage — contrast + deep vignette, no saturation shift ──
+  // ── Grade 2: final stage · contrast + deep vignette, no saturation shift ──
   // Gamma contrast deepens shadows and lifts highlights without touching hue.
   // Saturation boost removed: preserves the full yellow-green/blue-green
   // spectrum from the pasted reference; only luminance structure changes.

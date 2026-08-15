@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>plan.form — über das Projekt</title>
+  <title>plan.form · über das Projekt</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Space+Grotesk:wght@300;400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" />
@@ -17,6 +17,7 @@
   <ul class="nav-links">
     <li><a href="#acts">Akte</a></li>
     <li><a href="#science">Wissenschaft</a></li>
+    <li><a href="#accounting">Rechnung</a></li>
     <li><a href="#references">Quellen</a></li>
     <li><a href="#acknowledgements">Danksagung</a></li>
     <li><a href="#about">Über</a></li>
@@ -27,13 +28,13 @@
 
 <!-- ── Hero ──────────────────────────────────────────────────────────────── -->
 <header class="hero">
-  <div class="hero-bg" style="background-image:url('./SymmetrieHQ.jpeg')"></div>
+  <div class="hero-bg"></div>
   <div class="hero-content">
     <p class="hero-label">Neuronale-Feld-Visualisierung · WebGL · 2026</p>
     <h1>plan.form</h1>
     <p class="hero-subtitle">
       Eine Scrollytelling-WebGL-Erfahrung, die die Wilson-Cowan-Gleichungen für
-      neuronale Felder in Echtzeit auf der GPU ausführt — eine künstlerische
+      neuronale Felder in Echtzeit auf der GPU ausführt. Eine künstlerische
       Interpretation jener mathematischen Transformation, die DMT auf den
       primären visuellen Kortex anwenden könnte.
     </p>
@@ -45,11 +46,11 @@
 <section id="premise">
   <div class="section-inner">
     <span class="section-label">Die Prämisse</span>
-    <h2>DMT halluziniert nicht — sondern enthüllt?</h2>
+    <h2>DMT halluziniert nicht, sondern enthüllt?</h2>
     <p>
       Viele bestehende DMT-Visualisierungen machen denselben Fehler: Sie fügen
       einer leeren Leinwand exotische Inhalte hinzu. Fraktale Renderings,
-      VJ-Loops, KI-generierte Bilder — alle versuchen, die Erfahrung über
+      VJ-Loops, KI-generierte Bilder. Alle versuchen, die Erfahrung über
       Neuheit darzustellen. Dieses Projekt geht den umgekehrten Weg.
     </p>
     <p>
@@ -60,17 +61,19 @@
       überwindet und beginnt, spontan Strukturen zu erzeugen.
     </p>
     <p>
-      Die entstehende Geometrie ist nicht entworfen. Sie ist die stabile
-      Lösung einer Differentialgleichung — derselben Gleichung, die die
-      laterale Konnektivität von V1 in jedem menschlichen Gehirn beschreibt.
-      Die Mathematik erzeugt die Ästhetik, nicht umgekehrt.
+      Die Geometrie ist nicht gezeichnet. Sie ist die stabile Lösung einer
+      Differentialgleichung, derselben Gleichung, die die laterale Konnektivität
+      von V1 in jedem menschlichen Gehirn beschreibt. Was die Mathematik
+      hervorbringt, ist Struktur. Aus dieser Struktur ein Bild zu machen, hat
+      sehr viele Entscheidungen gebraucht, die nicht in der Mathematik stehen.
+      Sie sind weiter unten offen aufgelistet.
     </p>
     <p>
       Dies ist eine künstlerische Interpretation auf Grundlage wissenschaftlicher
       Modelle, keine wissenschaftliche Demonstration. Die neurowissenschaftliche
       Grundlage der Simulation ist gut etabliert; die Behauptung, dass dies
       die DMT-Erfahrung tatsächlich <em>ist</em>, ist es nicht. Diese Lücke
-      ist beabsichtigt — und sollte im Hinterkopf behalten werden.
+      ist beabsichtigt und sollte im Hinterkopf behalten werden.
     </p>
   </div>
 </section>
@@ -82,7 +85,7 @@
     <h2>Sechs Akte, eine kontinuierliche Transformation</h2>
     <p style="margin-bottom:3rem;">
       Die Scroll-Position bildet direkt die Shader-Uniforms ab. Es gibt keine
-      Timeline, keine Animationsschleife, die das Narrativ antreibt — nur das
+      Timeline, keine Animationsschleife, die das Narrativ antreibt, nur das
       Tempo der lesenden Person durch die Mathematik.
     </p>
 
@@ -93,7 +96,7 @@
         <p>
           Das Foto wird als luminanzverschobene 3D-Oberfläche dargestellt.
           Jeder der 197.000 Vertices wird proportional zur lokalen Helligkeit
-          nach außen verschoben — hellere Bereiche treten hervor, dunklere
+          nach außen verschoben. Hellere Bereiche treten hervor, dunklere
           ziehen sich zurück. Mausbewegung steuert die Kamera-Parallaxe.
           V1 empfängt dieses Signal. Seine laterale Konnektivität ist aktiv,
           aber stabil; Muster werden durch die Dominanz des externen Inputs
@@ -105,8 +108,8 @@
         <span class="act-scroll">20 – 36 %</span>
         <h3>II · Wilson–Cowan-Feld</h3>
         <p>
-          Eine 512²-GPU-Simulation zweier gekoppelter neuronaler Populationen
-          — exzitatorisch (E) und inhibitorisch (I) — wird parallel zum Bild
+          Eine 512²-GPU-Simulation zweier gekoppelter neuronaler Populationen,
+          exzitatorisch (E) und inhibitorisch (I), wird parallel zum Bild
           aktiviert. Die Feldgleichung läuft mit 8 Integrationsschritten pro
           gerendertem Frame. In dieser Phase dominiert das externe Bild.
           Das System ist stabil. Vorerst.
@@ -120,7 +123,7 @@
           Die laterale exzitatorische Kopplung w<sub>EE</sub> überschreitet
           eine kritische Schwelle. Der homogene Gleichgewichtszustand verliert
           seine Stabilität durch eine Turing-Instabilität. Räumliche Muster
-          entstehen spontan — nicht aus Rauschen, sondern aus der Feinstruktur
+          entstehen spontan, nicht aus Rauschen, sondern aus der Feinstruktur
           des Bildes selbst, die die Planform-Knoten an Texturgrenzen
           verankert.
         </p>
@@ -132,10 +135,11 @@
         <p>
           Das Feld organisiert sich selbst zu jener Planform, die Bressloff
           et al. (2001) für V1 unter erhöhter kortikaler Erregbarkeit
-          vorhersagen — der Gain-Anstieg, den Halluzinogene über eine
+          vorhersagen: der Gain-Anstieg, den Halluzinogene über eine
           5HT<sub>2A</sub>-vermittelte Wirkung auf V1 induzieren sollen.
-          Die Geometrie ist dem kortikalen Konnektivitätskern inhärent —
-          unabhängig vom darunterliegenden Bild. Es ist dieselbe Musterklasse,
+          Symmetrieklasse und Abstand des Musters sind dem kortikalen
+          Konnektivitätskern inhärent. Wo seine Knoten liegen, ist es nicht:
+          das Bild sät sie durchgehend weiter. Es ist dieselbe Musterklasse,
           die Klüver (1928) fast ein Jahrhundert zuvor aus Meskalin-Berichten
           katalogisierte.
         </p>
@@ -158,12 +162,12 @@
         <h3>VI · Erscheinen der Entitäten</h3>
         <p>
           z → log(z). Der komplexe Logarithmus bildet das Sichtfeld auf
-          kortikale Koordinaten ab. Die bilaterale Symmetrie rastet ein.
-          Die Knotenstruktur der Planform — bilateralsymmetrisch, hexagonal
-          angeordnet, radial organisiert — wird strukturell nicht mehr von
-          einem Gesicht zu unterscheiden. Höhere kortikale Areale
-          vervollständigen das Muster. Objekte erlangen Handlungsfähigkeit.
-          Entitäten erscheinen.
+          kortikale Koordinaten ab. Auf bilaterale, knotenartige, axial
+          organisierte Struktur reagiert gesichtsselektiver Kortex. Das ist
+          eine Aussage über den Menschen vor dem Bildschirm, nicht über das
+          Feld dahinter. Die Figuren werden hier zusätzlich von Hand in
+          Position geschoben. Offen bleibt, ob ein Kortex bei überkritischem
+          Gain diese Hilfe überhaupt bräuchte.
         </p>
       </div>
     </div>
@@ -178,24 +182,33 @@
 
     <!-- 1. Wilson-Cowan -->
     <div class="science-block">
-      <h3>1 · Das neuronale Feld — Wilson-Cowan und Bifurkation</h3>
+      <h3>1 · Das neuronale Feld · Wilson-Cowan und Bifurkation</h3>
       <p>
         Die Simulation berechnet pro Raumpunkt zwei gekoppelte gewöhnliche
         Differentialgleichungen auf einem 512 × 512-Gitter, achtmal pro
         gerendertem Frame aktualisiert über WebGL2-Ping-Pong-Rendertargets:
       </p>
-      <pre class="eq">τ_E · ∂E/∂t = −E + σ( w_EE · K_exc⊛E  −  w_EI · I  +  I_ext · (1−α) )
+      <pre class="eq">τ_E · ∂E/∂t = −E + σ( w_EE · K_exc⊛E  −  w_inh · K_inh⊛E  −  w_EI · I  +  I_ext )
 τ_I · ∂I/∂t = −I + σ( w_IE · E  −  w_II · I )
+
+I_ext = Luminanz · (1−α) · 0,45  +  Kantenenergie · 0,10
 
 σ(x) = 1 / (1 + exp(−5 · (x − 0,28)))   [Sigmoid-Aktivierung]
 ⊛ = räumliche Faltung mit dem lateralen Konnektivitätskern</pre>
+      <p>
+        Beide Kerne tasten das exzitatorische Feld ab: K<sub>exc</sub> über
+        einen kurzen Radius, K<sub>inh</sub> über einen langen. Ihre Differenz
+        ist der Mexican Hat. Der zweite Term in I<sub>ext</sub> skaliert nicht
+        mit α. Deshalb bleibt das Muster bei jedem Wert des Parameters am Bild
+        verankert.
+      </p>
       <p>
         Die räumliche Faltung verwendet zwei Ring-Sampler in GLSL: einen
         <strong>12-Punkt-Ring</strong> (30°-Abstand, 6-fache Symmetrie) bei
         Radius 6 px für die kurzreichweitige Erregung und einen 16-Punkt-Ring
         bei Radius 20 px für die langreichweitige Hemmung. Ihre Differenz
         approximiert den
-        <strong>Mexican-Hat-Kern lateraler Konnektivität</strong> — die
+        <strong>Mexican-Hat-Kern lateraler Konnektivität</strong>: die
         anatomische Tatsache, dass exzitatorische Neuronen lokale Cluster
         bilden, während inhibitorische Interneuronen weiter projizieren.
         Die 6-fache Symmetrie des 12-Punkt-Rings ist bewusst gewählt: Ein
@@ -223,18 +236,19 @@
       </p>
       <p>
         Dies ist eine <strong>Turing-Instabilität</strong> (Turing, 1952).
-        Der kritische Wellenvektor k* — die räumliche Frequenz, die zuerst
-        instabil wird — ergibt sich aus dem Verhältnis von exzitatorischem
+        Der kritische Wellenvektor k*, die räumliche Frequenz, die zuerst
+        instabil wird, ergibt sich aus dem Verhältnis von exzitatorischem
         zu inhibitorischem Kernradius. Für r<sub>exc</sub> = 6 px und
-        r<sub>inh</sub> = 20 px ergibt sich eine charakteristische Wellenlänge
-        von etwa 52 px, die die hexagonale Planform erzeugt. Dieselbe
+        r<sub>inh</sub> = 20 px legt eine Faustformel über diese Radien die
+        charakteristische Wellenlänge nahe 52 px; der tatsächliche Wert für
+        eine Differenz aus 12 und 16 Abtastpunkten weicht davon ab. Dieselbe
         Mathematik, die die Flecken im Leopardenfell verteilt, verteilt auch
         die Knoten des DMT-Musters.
       </p>
       <p>
         Der externe Input I<sub>ext</sub> enthält ein persistentes
         Hochfrequenz-Kantensignal, abgeleitet aus der Bildtextur. Es
-        verankert die Planform-Knoten an den Texturgrenzen des Bildes — und
+        verankert die Planform-Knoten an den Texturgrenzen des Bildes und
         stellt sicher, dass das entstehende Muster topographisch im Input
         verankert ist und nicht willkürlich entsteht.
       </p>
@@ -242,7 +256,7 @@
 
     <!-- 2. Form Constants -->
     <div class="science-block">
-      <h3>2 · Formkonstanten — von Klüver zu Bressloff</h3>
+      <h3>2 · Formkonstanten · von Klüver zu Bressloff</h3>
       <p>
         1928 dokumentierte der Psychologe Heinrich Klüver systematisch jene
         geometrischen Muster, die universell in Meskalin-Erfahrungen,
@@ -259,19 +273,19 @@
         modelliert als neuronales Feld mit lateraler Konnektivität,
         symmetriebrechenden Instabilitäten unterliegt, die genau diese vier
         Musterklassen erzeugen. Die Muster sind kein Inhalt, der dem Kortex
-        auferlegt wird — sie sind die strukturellen Resonanzen des Kortex
+        auferlegt wird. Sie sind die strukturellen Resonanzen des Kortex
         selbst, sichtbar gemacht, sobald die externe Unterdrückung wegfällt.
       </p>
       <p>
         Bressloff et al. (2001) erweiterten diese Analyse unter voller
-        Berücksichtigung der funktionellen Architektur von V1 —
+        Berücksichtigung der funktionellen Architektur von V1:
         Orientierungspräferenzsäulen, okuläre Dominanz, die Anisotropie der
-        langreichweitigen horizontalen Verbindungen — und zeigten, dass die
+        langreichweitigen horizontalen Verbindungen. Sie zeigten, dass die
         Symmetriegruppe der V1-Konnektivität die entstehenden Planformen auf
         einen kleinen Satz geometrischer Formen einschränkt. Diese entsprechen
         genau den Formkonstanten Klüvers. Die <strong>hexagonale Planform</strong>,
         die diese Simulation erzeugt, wird für gleichförmige, isotrope Eingaben
-        unter erhöhter kortikaler Erregbarkeit vorhergesagt — der Gain-Anstieg,
+        unter erhöhter kortikaler Erregbarkeit vorhergesagt: der Gain-Anstieg,
         den klassische Halluzinogene über eine 5HT<sub>2A</sub>-vermittelte
         Wirkung auf V1 induzieren sollen.
       </p>
@@ -279,14 +293,18 @@
 
     <!-- 3. Geometry -->
     <div class="science-block">
-      <h3>3 · Kortikale Geometrie — Retino-kortikale Abbildung und hyperbolischer Raum</h3>
+      <h3>3 · Kortikale Geometrie · Retino-kortikale Abbildung und hyperbolischer Raum</h3>
       <p>
         Das Sichtfeld bildet sich nicht linear auf die V1-Oberfläche ab. Die
         zentralen 10° des Sehens nehmen rund die Hälfte der V1-Oberfläche
         ein, obwohl sie nur einen kleinen Bruchteil des gesamten Sichtfelds
         abdecken (Horton &amp; Hoyt, 1991). Diese Vergrößerung folgt einer
-        logarithmischen Beziehung — der <strong>retino-kortikalen Transformation</strong> —
-        die präzise durch den komplexen Logarithmus beschrieben wird:
+        logarithmischen Beziehung, der <strong>retino-kortikalen Transformation</strong>,
+        die durch den komplexen Logarithmus beschrieben wird. Die hier
+        implementierte Transformation gibt die logarithmische Form dieser
+        Vergrößerung qualitativ wieder; ihre Konstanten sind für die
+        Bildwirkung gewählt und nicht an den publizierten
+        Vergrößerungsfaktor angepasst:
       </p>
       <pre class="eq">w = log(z)    wobei z = x + iy die Position im Sichtfeld ist
 
@@ -300,23 +318,23 @@ Implementiert in GLSL:
       <p>
         Radiale Muster im Sichtraum werden zu vertikalen Streifen in
         kortikalen Koordinaten. Konzentrische Ringe werden zu horizontalen
-        Streifen. Die Planform — die in kortikalen Koordinaten lebt —
+        Streifen. Die Planform, die in kortikalen Koordinaten lebt,
         erscheint nach Rückabbildung durch die inverse Transformation als
-        radial symmetrisches Mandala. Die bilaterale Spiegelung vor der
-        Log-Polar-Transformation spiegelt die biologische Symmetrie von V1
-        wider: Jede Hemisphäre verarbeitet das kontralaterale Sichtfeld,
-        sodass jedes kortikale Muster ein symmetrisches Gegenstück besitzt.
-        Aus dieser Symmetrieoperation entstehen die Formen der „Doppel-Kreaturen".
+        radial symmetrisches Mandala. Die verdoppelten, figurartigen Formen
+        des Schlussakts stammen nicht aus einer Symmetrieoperation. Sie
+        stammen aus dem Winkelumlauf der Log-Polar-Abbildung, kombiniert mit
+        der aufgeprägten Verschiebung, die unter Offene Rechnung beschrieben
+        ist.
       </p>
       <p>
         Andres Gomez-Emilsson (2016) vom Qualia Research Institute schlug
         vor, dass DMT die zugrundeliegende Geometrie des phänomenalen Raums
         vom Euklidischen ins <strong>Hyperbolische</strong> überführt. Im
         hyperbolischen Raum wächst der Umfang eines Kreises exponentiell
-        mit dem Radius statt linear — und stellt damit exponentiell mehr
+        mit dem Radius statt linear und stellt damit exponentiell mehr
         „Raum" pro Radiusspanne bereit. Das fängt die Informationsflut der
         DMT-verstärkten lateralen Konnektivität auf und könnte die berichtete
-        Qualität von „realer als real" erklären — pro wahrgenommener
+        Qualität von „realer als real" erklären: pro wahrgenommener
         Raumeinheit lässt sich mehr Information kodieren, als in der
         euklidischen Geometrie möglich wäre. <em>Hinweis: Der QRI-Essay ist
         ein spekulativer philosophischer Vorschlag, keine peer-reviewte
@@ -332,8 +350,7 @@ Implementiert in GLSL:
 
 wobei r = normalisierter Bildschirmradius, t = Krümmungsparameter [0,1]</pre>
       <p>
-        Kombiniert mit einer vierfachen Farbmittelung (Abtastung aller vier
-        Spiegelpositionen und Mittelung) erzeugt dies das scheibenförmige
+        Dies erzeugt das scheibenförmige
         Mandala, das für die visuelle Geometrie psychedelischer Peaks
         charakteristisch ist. Das Zentrum dehnt sich ohne erkennbare Grenze
         aus; der Rand zieht sich endlos zurück.
@@ -343,24 +360,117 @@ wobei r = normalisierter Bildschirmradius, t = Krümmungsparameter [0,1]</pre>
         mittleren Luminanzpunkt des Bildes herum zentriert, sodass dunkle
         Bereiche (der „Boden" zwischen den Kreaturformen) zurücktreten und
         helle Bereiche (die Oberflächen der Kreaturen) weiter hervortreten.
-        Die bilaterale Symmetrie der Planform aktiviert das
-        <strong>fusiforme Gesichtsareal</strong> (Kanwisher et al., 1997) —
-        das auf die strukturellen Merkmale eines Gesichts (bilaterale
-        Symmetrie, knotenartige Augenpositionen, axiale Anordnung) reagiert,
-        unabhängig davon, ob der Input tatsächlich ein Gesicht ist. Höhere
-        kortikale Areale vervollständigen das Muster. Dies könnte ein
-        neuronales Korrelat dessen sein, was Terence McKenna als
-        „machine elves" beschrieb: deterministische Mustervervollständigung
-        auf einem überkritischen neuronalen Feld. Ob dies die volle
-        Phänomenologie erklärt — die Handlungsfähigkeit, die Erzählung,
-        das emotionale Gewicht von Entitätenbegegnungen — bleibt eine offene
-        Frage, die das Modell nicht beantwortet.
+        Diese Verschiebung ist aufgeprägt, nicht berechnet: sie wird auf die
+        Luminanz des Fotos angewandt und ist nicht aus dem Feld abgeleitet.
+        Davon getrennt reagiert das <strong>fusiforme Gesichtsareal</strong>
+        (Kanwisher et al., 1997) auf die strukturellen Merkmale eines Gesichts
+        (bilaterale Symmetrie, knotenartige Augenpositionen, axiale Anordnung),
+        unabhängig davon, ob der Input tatsächlich ein Gesicht ist. Das ist
+        eine Aussage über den Menschen vor dem Bildschirm, nicht über die
+        Simulation dahinter. Dies könnte ein neuronales Korrelat der
+        figurartigen Formen sein, die an der Schwelle der Erfahrung berichtet
+        werden: Mustervervollständigung auf einem überkritischen neuronalen
+        Feld. Ob dies die volle Phänomenologie erklärt, also die
+        Handlungsfähigkeit, die Erzählung und das emotionale Gewicht von
+        Entitätenbegegnungen, bleibt eine offene Frage, die das Modell nicht
+        beantwortet.
       </p>
     </div>
   </div>
 </section>
 
 <!-- ── Quellen ───────────────────────────────────────────────────────────── -->
+<!-- ── Offene Rechnung ───────────────────────────────────────────────────── -->
+<section id="accounting">
+  <div class="section-inner">
+    <span class="section-label">Offene Rechnung</span>
+    <h2>Wo die Simulation aufhört und die Gestaltung anfängt</h2>
+
+    <p>
+      Das neuronale Feld ist echt: zwei gekoppelte Populationen, auf der GPU
+      integriert, ohne vorgeschriebenes Ergebnis. Alles, was danach kommt, ist
+      eine Gestaltungsentscheidung. Die Trennung der beiden ist wichtiger als
+      jedes von beiden für sich, deshalb hier die vollständige Liste.
+    </p>
+
+    <div class="science-block">
+      <h3>Was das Feld bestimmt</h3>
+      <p>
+        Symmetrieklasse und charakteristische Wellenlänge der Planform folgen aus
+        dem Konnektivitätskern und aus nichts sonst. Die Bifurkation ist ein
+        echter Stabilitätsverlust: unterhalb der Schwelle ist der homogene
+        Zustand Attraktor, oberhalb der gemusterte. Die Aktivierungsfront ist
+        keine Überblendung. Sie gatet die Simulation selbst, Kortex außerhalb der
+        Front bleibt unterkritisch, bis die Front eintrifft.
+      </p>
+    </div>
+
+    <div class="science-block">
+      <h3>Was das Bild bestimmt</h3>
+      <p>
+        Wo die Knoten liegen. Ein hochfrequenter Term aus der Eingangstextur geht
+        in den externen Antrieb ein und verschwindet nicht, wenn der Parameter
+        steigt. Das Muster bleibt dadurch durchgehend topographisch am Foto
+        verankert. Der Kern entscheidet, welche Musterklasse entsteht, das Bild
+        entscheidet, wo sie entsteht. Eine frühere Fassung dieses Textes
+        behauptete, die Planform sei vom Bild unabhängig. Das war in der zweiten
+        Hälfte falsch.
+      </p>
+    </div>
+
+    <div class="science-block">
+      <h3>Was aufgeprägt ist</h3>
+      <ul class="accounting-list">
+        <li>
+          <strong>Entitätengeometrie.</strong> Im Schlussakt wird die
+          Vertex-Verschiebung auf die mittlere Helligkeit des Bildes rezentriert,
+          sodass helle Formen hervortreten und dunkle Bereiche zurückfallen. Das
+          ist nicht aus dem Feld abgeleitet, sondern auf das Foto angewandt. Die
+          Ähnlichkeit mit stehenden Figuren ist komponiert, nicht berechnet.
+        </li>
+        <li>
+          <strong>Symmetrie-Bias.</strong> Das Labor bietet einen Regler für die
+          Zähligkeit der Planform. Er speist eine schwache Winkelmodulation in den
+          externen Antrieb ein, zentriert auf den Bildmittelpunkt. Die Amplitude
+          ist klein genug, dass das Feld den Wettbewerb weiterhin selbst
+          entscheidet, aber der Wettbewerb ist angestoßen, und die Zentrierung
+          begünstigt eine radiale Komposition.
+        </li>
+        <li>
+          <strong>Randdämpfung.</strong> Die laterale Kopplung wird im äußeren
+          Zehntel des Bildes in Richtung ihres unterkritischen Werts gezogen. Das
+          unterdrückt Musterbildung am Rand und zentriert das Bild. Eine
+          Vignette, angewandt auf die Dynamik statt auf das Bild.
+        </li>
+        <li>
+          <strong>Zeitpunkt der Front.</strong> Auslösepunkt, die Verzögerung von
+          einer Sekunde und die konstante Geschwindigkeit der Aktivierungsfront
+          sind gesetzt. In einem neuronalen Feld entstehen Fronten aus der
+          Dynamik. Hier ist die Front Regie, und die Dynamik folgt ihr.
+        </li>
+        <li>
+          <strong>Alles nach dem Rendern.</strong> Bloom, radiale chromatische
+          Aberration, Plasmavolumen, zwei Farbgradings, Drift, Scheibenmaske,
+          Kantenblenden, Frame-Feedback, Tonemapping. Nichts davon steht in
+          irgendeinem Modell. Das ist Fotografie.
+        </li>
+      </ul>
+    </div>
+
+    <div class="science-block">
+      <h3>Was das Modell nicht behauptet</h3>
+      <p>
+        Die gesichtsähnlichen Formen des Schlussakts sind eine Aussage über den
+        Betrachter, nicht über die Simulation. Dass gesichtsselektiver Kortex auf
+        bilateral und axial organisierte Knotenstruktur reagiert, ist eine Aussage
+        über einen Menschen vor einem Bildschirm. Der Bildschirm tut es nicht. Ob
+        dieselbe Erklärung bis zu Entitätsbegegnungen unter DMT trägt, ist eine
+        offene Frage, die diese Arbeit stellt und nicht beantwortet.
+      </p>
+    </div>
+  </div>
+</section>
+
 <section id="references">
   <div class="section-inner">
     <span class="section-label">Quellen</span>
@@ -493,7 +603,7 @@ wobei r = normalisierter Bildschirmradius, t = Krümmungsparameter [0,1]</pre>
           </td>
           <td>
             Fragment-Shader-Architektur für Wellenüberlagerung. Binaurales
-            Audio synchron zur Feldfrequenz. Kontemplatives Tempo — ein
+            Audio synchron zur Feldfrequenz. Kontemplatives Tempo: ein
             Klick als Ritual, nicht als Steuerung. Die Zurückhaltung, die
             wissenschaftliche Visualisierung von generativem Spektakel
             trennt.
@@ -608,19 +718,19 @@ wobei r = normalisierter Bildschirmradius, t = Krümmungsparameter [0,1]</pre>
 <section id="about">
   <div class="section-inner">
     <span class="section-label">Über</span>
-    <h2>Kracht</h2>
+    <h2>Philipp Kuhlemann</h2>
     <div class="about-block">
       <div>
         <p>
-arbeitet als Systems Engineer bei einem Managed-Service-Provider in Mainz, wo der größte Teil seiner Arbeitszeit in Linux-Infrastruktur, Docker-Container und jene Integrationsarbeit fließt, die Unternehmen am Laufen hält, ohne selbst Aufmerksamkeit zu beanspruchen. Den Rest verbringt er mit Lesen — Hofstadter über seltsame Schleifen, Jaynes über die Ursprünge des Bewusstseins, Tegmark über die mathematische Struktur der physikalischen Realität — eine Art von Anhäufung, die sich langsam aufbaut und gelegentlich unerwartete Ergebnisse hervorbringt.
+arbeitet als Systems Engineer bei einem Managed-Service-Provider in Mainz, wo der größte Teil seiner Arbeitszeit in Linux-Infrastruktur, Docker-Container und jene Integrationsarbeit fließt, die Unternehmen am Laufen hält, ohne selbst Aufmerksamkeit zu beanspruchen. Den Rest verbringt er mit Lesen: Hofstadter über seltsame Schleifen, Jaynes über die Ursprünge des Bewusstseins, Tegmark über die mathematische Struktur der physikalischen Realität. Eine Art von Anhäufung, die sich langsam aufbaut und gelegentlich unerwartete Ergebnisse hervorbringt.
         </p>
         <p>
-Dieses Projekt ist eines davon. Es begann mit einer eng gefassten Frage: Warum kehren geometrische Sehkonstanten über verschiedene veränderte Bewusstseinszustände hinweg so präzise wieder, und warum versäumen es bestehende Visualisierungen durchgängig, der Präzision gerecht zu werden, die die zugrundeliegende Mathematik tatsächlich anbietet? Die Umsetzung — eine im Browser laufende, scrollgesteuerte Wilson-Cowan-Simulation auf der GPU — brauchte erheblich mehr GLSL als ursprünglich angemessen schien. Die mathematischen Grundlagen sind zumindest gut etabliert. Was sie vollständig erklären, ist es nicht.</p>
+Dieses Projekt ist eines davon. Es begann mit einer eng gefassten Frage: Warum kehren geometrische Sehkonstanten über verschiedene veränderte Bewusstseinszustände hinweg so präzise wieder, und warum versäumen es bestehende Visualisierungen durchgängig, der Präzision gerecht zu werden, die die zugrundeliegende Mathematik tatsächlich anbietet? Die Umsetzung, eine im Browser laufende, scrollgesteuerte Wilson-Cowan-Simulation auf der GPU, brauchte erheblich mehr GLSL als ursprünglich angemessen schien. Die mathematischen Grundlagen sind zumindest gut etabliert. Was sie vollständig erklären, ist es nicht.</p>
       </div>
       <div>
         <h3>Kontakt</h3>
         <p>
-          <a href="mailto:pk@sponde.de" style="color:inherit;">pk@sponde.de</a><br>
+          <span class="mail-obf">pk [at] sponde [dot] de</span><br>
           <a href="https://github.com/Kracht" target="_blank" style="color:inherit;">github.com/Kracht</a>
         </p>
         <h3>Quellcode</h3>
@@ -638,6 +748,7 @@ Dieses Projekt ist eines davon. Es begann mit einer eng gefassten Frage: Warum k
 <!-- ── Footer ─────────────────────────────────────────────────────────────── -->
 <footer>
   <span>plan.form · 2026</span>
+  <a href="https://sponde.de/impressum/">Impressum</a>
   <a href="./experience.html">Erfahrung starten →</a>
 </footer>
 

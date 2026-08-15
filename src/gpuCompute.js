@@ -4,7 +4,7 @@ import wcEShader from './shaders/wc_e.frag?raw'
 import wcIShader from './shaders/wc_i.frag?raw'
 
 const GRID = 512
-// 8 steps/frame — patterns form within ~1-2 seconds after crossing bifurcation
+// 8 steps/frame · patterns form within ~1-2 seconds after crossing bifurcation
 const STEPS_PER_FRAME = 8
 
 export function createGPUCompute(renderer, inputTexture) {
@@ -23,7 +23,10 @@ export function createGPUCompute(renderer, inputTexture) {
   gpuCompute.setVariableDependencies(eVar, [eVar, iVar])
   gpuCompute.setVariableDependencies(iVar, [eVar, iVar])
 
-  // Periodic boundary → no edge artefacts, matches theoretical model assumptions
+  // Periodic wrapping on the sampler. Note this does NOT make the field periodic:
+  // wc_e.frag damps w_EE within the outer 10% of the frame, which suppresses
+  // pattern at the border and centres the composition. That damping is a design
+  // choice, not a model assumption.
   eVar.wrapS = THREE.RepeatWrapping
   eVar.wrapT = THREE.RepeatWrapping
   iVar.wrapS = THREE.RepeatWrapping

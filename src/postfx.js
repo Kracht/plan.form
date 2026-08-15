@@ -5,9 +5,9 @@ import * as THREE from 'three'
 // Pipeline:
 //   1. Scene renders to offscreen WebGLRenderTarget (full resolution)
 //   2. Fullscreen quad applies:
-//      a. Radial chromatic aberration — R/G/B UV channels offset radially
-//      b. Bloom — 4 rings × 8 samples, additive glow above luminance threshold
-//      c. Plasma volume — screen-space Gaussian blur of the sim texture, mapped
+//      a. Radial chromatic aberration, R/G/B UV channels offset radially
+//      b. Bloom, 4 rings × 8 samples, additive glow above luminance threshold
+//      c. Plasma volume, screen-space Gaussian blur of the sim texture, mapped
 //         to deep blue → cyan colours.  Fills enclosed structure interiors as a
 //         continuous glow (no discrete sprites, no plane boundary artifact).
 //   3. ACES tone map → canvas
@@ -109,7 +109,7 @@ const POST_FRAG = /* glsl */`
     float depthMask = 1.0 - smoothstep(0.10, 0.55, sceneLuma);
     if (depthMask < 0.005) return vec3(0.0);
 
-    // Screen-edge vignette — no hard clip at sim-texture boundary.
+    // Screen-edge vignette · no hard clip at sim-texture boundary.
     vec2  edgeDist = min(uv, 1.0 - uv);
     float edgeFade = smoothstep(0.0, 0.05, edgeDist.x)
                    * smoothstep(0.0, 0.05, edgeDist.y);
@@ -119,11 +119,11 @@ const POST_FRAG = /* glsl */`
     // Weights fall off with radius so local edge detail stays sharper than
     // the far-interior fill, producing the density-gradient-toward-surface look.
     //
-    //  ring 0  r=0.030  8 taps  w=0.38  — surface proximity / edge detail
-    //  ring 1  r=0.065  8 taps  w=0.28  — near-interior
-    //  ring 2  r=0.105 10 taps  w=0.18  — mid interior
-    //  ring 3  r=0.155 12 taps  w=0.11  — deep interior
-    //  ring 4  r=0.210 14 taps  w=0.06  — furthest reach (large structure centres)
+    //  ring 0  r=0.030  8 taps  w=0.38 , surface proximity / edge detail
+    //  ring 1  r=0.065  8 taps  w=0.28 , near-interior
+    //  ring 2  r=0.105 10 taps  w=0.18 , mid interior
+    //  ring 3  r=0.155 12 taps  w=0.11 , deep interior
+    //  ring 4  r=0.210 14 taps  w=0.06 , furthest reach (large structure centres)
     const float PI2 = 6.28318530718;
 
     float density = texture2D(uSimTexture, clamp(uv, 0.001, 0.999)).r * 0.20;
@@ -157,14 +157,14 @@ const POST_FRAG = /* glsl */`
 
     density /= wTotal;
 
-    // Soft power curve instead of saturating smoothstep — preserves the
+    // Soft power curve instead of saturating smoothstep, preserves the
     // interior→surface density gradient rather than clamping everything to 1.
     // Threshold at 0.18 removes noise floor; pow(x, 0.75) gently lifts midtones.
     density = pow(max(density - 0.18, 0.0) / 0.42, 0.75);
     if (density < 0.002) return vec3(0.0);
 
     // ── Colour ────────────────────────────────────────────────────────────
-    // Near-neutral dark grey — the WC field has no inherent colour.
+    // Near-neutral dark grey · the WC field has no inherent colour.
     // A very slight cool tint (more blue than red) prevents it reading as
     // warm and keeps it visually distinct from the scene darks, without
     // implying anything not in the science.
@@ -182,10 +182,9 @@ const POST_FRAG = /* glsl */`
 
   // ── Control interruption: feedback echo via x/y axis difference ─────────────
   //
-  // Models the subversion of negative feedback control described in
-  // Algorithmic Reduction of Psychedelic States (QRI, 2016):
-  // The negative-feedback loop that normally suppresses sensory buildup is
-  // interrupted — prior sensory data bleeds into the current frame.
+  // Directional frame feedback: the previous frame's post output is sampled with
+  // an offset and added back, so prior sensory data bleeds into the current frame.
+  // Purely an image effect. Nothing in any neural model produces it.
   //
   // The displacement of the echo sample is driven by the *difference* between
   // the local x-axis and y-axis luminance gradients.  Where horizontal edges
@@ -211,7 +210,7 @@ const POST_FRAG = /* glsl */`
 
     vec3 prev = texture2D(uFeedbackTex, clamp(uv + echoOff, 0.001, 0.999)).rgb;
 
-    // Additive blend — sensory buildup. Cap prevents blow-out above uEcho=0.8.
+    // Additive blend · sensory buildup. Cap prevents blow-out above uEcho=0.8.
     return col + prev * uEcho * 0.38;
   }
 
@@ -231,7 +230,7 @@ const POST_FRAG = /* glsl */`
 
     col = col + plasmaVolume(vUv, sceneLuma);
 
-    // Control interruption — must run after bloom/plasma (operates on lit scene)
+    // Control interruption · must run after bloom/plasma (operates on lit scene)
     // but before tone mapping (needs linear-light values for correct buildup).
     col = controlInterruption(vUv, col);
 
@@ -265,7 +264,7 @@ export function createPostFX(renderer) {
   // Scene render target (existing role)
   const target = makeRT(rw, rh)
 
-  // Ping-pong feedback targets — store the previous frame's post output
+  // Ping-pong feedback targets · store the previous frame's post output
   // so controlInterruption() can sample it with its xy-diff offset.
   const feedTargets = [ makeRT(rw, rh), makeRT(rw, rh) ]
   let   feedRead    = 0   // index of the previous-frame target (read-only this frame)

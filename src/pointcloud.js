@@ -39,7 +39,7 @@ const VERT = /* glsl */`
   #define PI 3.14159265358979
 
   // Poincaré disk: exponential centre expansion (hyperbolic geometry).
-  // Particles represent V1 excitation nodes in cortical space — the Poincaré
+  // Particles represent V1 excitation nodes in cortical space, the Poincaré
   // warp reflects that the geometry of visual space has deformed, so nodes near
   // the centre appear more spread out. Capped at 0.65 to keep particles well
   // inside the disk boundary and avoid positional blow-up.
@@ -58,7 +58,7 @@ const VERT = /* glsl */`
 
     float lift = max(e - 0.30, 0.0) * uDMT * ${LIFT_SCALE.toFixed(2)};
 
-    // Poincaré only — corticalUV is a texture-sampling transform (where to look
+    // Poincaré only · corticalUV is a texture-sampling transform (where to look
     // in an image), not a spatial position transform. The tanh formulation keeps
     // positions bounded inside the unit disk for any t ∈ [0,1], so no cap needed.
     vec2 pUv = (uCurvature > 0.001) ? poincareUV(aUv, uCurvature) : aUv;
@@ -85,7 +85,7 @@ const VERT = /* glsl */`
 
     // Act VI fade-out: as the retino-cortical map engages, the cortical-mapped
     // surface texture and statue-emergence displacement express the same
-    // activation directly. The particle layer becomes redundant — fading it out
+    // activation directly. The particle layer becomes redundant, fading it out
     // here prevents the visible disconnect between particles (which can't follow
     // the log-polar transform meaningfully) and the morphing surface beneath.
     float retinoFade = 1.0 - smoothstep(0.30, 0.80, uRetino);

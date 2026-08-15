@@ -36,3 +36,9 @@ pnpm-lock.yaml
 
 # Claude Code
 .claude/
+
+# Third-party imagery, not redistributable
+public/*.jpg
+public/*.jpeg
+public/*.png
+src/gallery/
