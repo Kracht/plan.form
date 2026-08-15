@@ -304,12 +304,15 @@ It does not model recognition. Act V reads the field as depth, but the source at
 ### Peer-reviewed literature
 
 - **Amari, S.** (1977). Dynamics of pattern formation in lateral-inhibition type neural fields. *Biological Cybernetics*, 27(2), 77–87.
+- **Bonhoeffer, T. & Grinvald, A.** (1991). Iso-orientation domains in cat visual cortex are arranged in pinwheel-like patterns. *Nature*, 353, 429–431.
 - **Bressloff, P.C., Cowan, J.D., Golubitsky, M., Thomas, P.J., Wiener, M.** (2001). Geometric visual hallucinations, Euclidean symmetry and the functional architecture of striate cortex. *Phil. Trans. R. Soc. B*, 356, 299–330.
 - **Ermentrout, G.B. & Cowan, J.D.** (1979). A mathematical theory of visual hallucination patterns. *Biological Cybernetics*, 34, 137–150.
+- **Field, D.J.** (1987). Relations between the statistics of natural images and the response properties of cortical cells. *J. Opt. Soc. Am. A*, 4(12), 2379–2394.
 - **Horton, J.C. & Hoyt, W.F.** (1991). The representation of the visual field in human striate cortex: a revision of the classic Holmes map. *Archives of Ophthalmology*, 109(6), 816–824.
 - **Kanwisher, N., McDermott, J. & Chun, M.M.** (1997). The fusiform face area: a module in human extrastriate cortex specialized for face perception. *Journal of Neuroscience*, 17(11), 4302–4311.
 - **Klüver, H.** (1966). *Mescal and mechanisms of hallucinations*. University of Chicago Press. (Original work published 1928)
 - **Piccinini, J.I. et al.** (2025). Transient destabilization of whole brain dynamics induced by N,N-Dimethyltryptamine (DMT). *Communications Biology*, 8, 148.
+- **Ruderman, D.L. & Bialek, W.** (1994). Statistics of natural images: Scaling in the woods. *Physical Review Letters*, 73(6), 814–817.
 - **Timmermann, C. et al.** (2019). Neural correlates of the DMT experience assessed with multivariate EEG. *Scientific Reports*, 9, 16324.
 - **Turing, A.M.** (1952). The chemical basis of morphogenesis. *Phil. Trans. R. Soc. B*, 237, 37–72.
 - **Wilson, H.R. & Cowan, J.D.** (1972). Excitatory and inhibitory interactions in localized populations of model neurons. *Biophysical Journal*, 12(1), 1–24.
@@ -321,8 +324,9 @@ The following sources shaped the conceptual framing and visual language of this 
 
 McKenna's ethnobotanical and cultural work operates in a tradition of experiential inquiry and synthesis that sits outside, but not beneath, academic convention.
 
-Gomez-Emilsson's essay represents serious independent theoretical work in the phenomenology of altered states, produced within the Qualia Research Institute's research programme, and engages directly with mathematical and geometric frameworks.
+Gomez-Emilsson's two essays represent serious independent theoretical work in the phenomenology of altered states, produced within the Qualia Research Institute's research programme, and engage directly with mathematical and geometric frameworks. Both are load-bearing: the six-level sequence that sets the act boundaries comes from one, the two operators running as post-effects come from the other.
 
+- **Gomez-Emilsson, A.** (2016). Algorithmic reduction of psychedelic states. *Qualia Computing* (non-peer-reviewed essay). Source of the four operators; control interruption and drifting run here as post-effects, enhanced pattern recognition and symmetry detection do not.
 - **Gomez-Emilsson, A.** (2016). The hyperbolic geometry of DMT experiences. *Qualia Research Institute* (non-peer-reviewed essay). Used here as conceptual inspiration for the Poincaré disk transform, not as empirical evidence.
 - **McKenna, T.** (1993). *Food of the gods: The search for the original tree of knowledge*. Bantam Books. Cited for the cultural framing of the closing panel only; nothing in the model depends on it.
 
